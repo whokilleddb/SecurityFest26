@@ -27,7 +27,6 @@ fonts:
   sans: 'Fira Mono'
   serif: 'Fira Mono'
   mono: 'Fira Mono'
-
 ---
 
 # From Code to Compromise: Turning IDEs into attack vectors
@@ -180,26 +179,24 @@ _But there's a catch_
 
 ---
 layout: center
+transition: fade-out
 ---
-
 
 <img src="./imgs/uncben.png" class="w-full max-h-100 object-contain" />
 
+---
+transition: fade-out
+layout: image-right
+image: https://avatars.githubusercontent.com/u/61870837?v=4
+---
 
+# OpenVSX 
 
+An Eclipse open-source project and alternative to the Visual Studio Marketplace
 
+Due to legal nuances, alternative code editors built on the open-source VS Code project are barred from accessing the official Microsoft Visual Studio Marketplace 
 
-
-
-
-
-
-
-
-
-
-
-
+This led to OpenVSX becoming really popular as an alternate extension store. However, it is not as extensively monitored as the VSCode Marketplace. It is very easy to spoof extensions, hijack search rankings, fake reviews - all of which has led to multiple security incidents over the last year
 
 
 ---
