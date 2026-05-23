@@ -162,57 +162,45 @@ _<span class="text-red-500">*</span>I wrote this line two years ago, not quite s
 
 ---
 transition: fade-out
-class: text-left
+layout: image-right
+image: https://exafunction.github.io/public/brand/windsurf-white-symbol.png
 title: Rise of AI powered IDEs
 ---
 
 # Rise of AI powered IDEs
 
-Use code snippets and get the highlighting directly, and even types hover!
+<br/>
 
-```ts [filename-example.ts] {all|4|6|6-7|9|all} twoslash
-// TwoSlash enables TypeScript hover information
-// and errors in markdown code blocks
-// More at https://shiki.style/packages/twoslash
-import { computed, ref } from 'vue'
+- 2024-2025 saw the rise of AI powered IDEs
+- We Cursor, Windsurf and a bunch of IDEs
+- \**Looks inside\** - Based out of VSCode
 
-const count = ref(0)
-const doubled = computed(() => count.value * 2)
+_But there's a catch_
 
-doubled.value = 2
-```
 
-<arrow v-click="[4, 5]" x1="350" y1="310" x2="195" y2="342" color="#953" width="2" arrowSize="1" />
+---
+layout: center
+---
 
-<!-- This allow you to embed external code blocks -->
-<<< @/snippets/external.ts#snippet
 
-<!-- Footer -->
+<img src="./imgs/uncben.png" class="w-full max-h-100 object-contain" />
 
-[Learn more](https://sli.dev/features/line-highlighting)
 
-<!-- Inline style -->
-<style>
-.footnotes-sep {
-  @apply mt-5 opacity-10;
-}
-.footnotes {
-  @apply text-sm opacity-75;
-}
-.footnote-backref {
-  display: none;
-}
-</style>
 
-<!--
-Notes can also sync with clicks
 
-[click] This will be highlighted after the first click
 
-[click] Highlighted with `count = ref(0)`
 
-[click:3] Last click (skip two clicks)
--->
+
+
+
+
+
+
+
+
+
+
+
 
 ---
 level: 2
