@@ -1,11 +1,12 @@
 ---
 # try also 'default' to start simple
-theme: eloc
+theme: default
+
 # random image from a curated Unsplash collection by Anthony
 # like them? see https://unsplash.com/collections/94734566/slidev
-background: ./imgs/background.png
+#background: ./imgs/background.png
 # some information about your slides (markdown enabled)
-title: Welcome to Slidev
+title: From Code to Compromise
 info: |
   ## Security Fest 2026 slides
   From Code to Compromise
@@ -21,6 +22,11 @@ transition: fade-out
 comark: true
 # duration of the presentation
 duration: 45min
+
+fonts:
+  sans: 'Fira Mono'
+  serif: 'Fira Mono'
+  mono: 'Fira Mono'
 
 ---
 
@@ -51,26 +57,26 @@ class: text-left
 - Consultant @ Certus Cyber
 - Researcher @ Payatu
 
+**Socials**
+
+<div class="flex gap-3 mt-2">
+  <a href="https://x.com/whokilleddb"><img src="./imgs/x.png" class="w-10 h-10object-contain" /></a>
+  <a href="https://www.linkedin.com/in/whokilleddb/"><img src="./imgs/linkedin.png" class="w-10 h-10object-contain" /></a>
+  <a href="https://github.com/whokilleddb/"><img src="./imgs/github.png" class="w-10 h-10object-contain" /></a>
+</div>
+
 ::right::
 
 **Off work DB**
 
-<div class="flex gap-3 mt-2 mb-6">
-  <img src="https://m.media-amazon.com/images/I/81zqVhvbHbL._SL1500_.jpg" class="w-30 h-38 object-cover rounded" />
-  <img src="https://upload.wikimedia.org/wikipedia/en/4/44/Red_Dead_Redemption_II.jpg" class="w-30 h-38 object-cover rounded" />
-  <img src="https://images.seeklogo.com/logo-png/33/1/anthony-bourdain-parts-unknown-logo-png_seeklogo-332957.png" class="w-38 h-38 object-cover rounded" />
-  <img src="https://m.media-amazon.com/images/M/MV5BYzc5YmEwOTItMWI5Ni00YTM4LTk3NzktYWVmNWU4NzE4NDJmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" class="w-30 h-38 object-cover rounded" />
-  <img src="https://m.media-amazon.com/images/M/MV5BMTU3ZTdiOGQtYmYwYy00OGM5LThmNjMtZGJmNTVlZjk1ZmEyXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" class="w-30 h-38 object-cover rounded" />
+<div class="grid grid-cols-2 gap-2 mt-2 mb-4">
+  <img src="https://m.media-amazon.com/images/I/81zqVhvbHbL._SL1500_.jpg" class="w-full h-24 object-cover object-top rounded" />
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnwpUzx-HpdEborrNpBJC8swy1u2TpvNqeew&s" class="w-full h-24 object-cover object-top rounded" />
+  <img src="https://images.seeklogo.com/logo-png/33/1/anthony-bourdain-parts-unknown-logo-png_seeklogo-332957.png" class="w-full h-24 object-cover object-top rounded" />
+  <img src="https://gaming-cdn.com/images/products/5661/orig/disco-elysium-pc-spel-gog-com-cover.jpg?v=1701269736" class="w-full h-24 object-cover object-top rounded" />
+  <img src="https://assetsio.gnwcdn.com/cowboy-bebop-anime-characters.png?width=690&quality=85&format=jpg&dpr=3&auto=webp" class="w-full h-24 object-cover object-top rounded" />
+  <img src="https://www.nintendo.com/eu/media/images/assets/nintendo_switch_2_games/eldenringtarnishededition/2x1_NSwitch2_EldenRing.jpg" class="w-full h-24 object-cover object-top rounded" />
 </div>
-
-**Socials**
-
-<div class="flex gap-3 mt-2">
-  <a href="https://x.com/whokilleddb"><img src="./imgs/x.png" class="w-20 h-20 object-contain" /></a>
-  <a href="https://www.linkedin.com/in/whokilleddb/"><img src="./imgs/linkedin.png" class="w-20 h-20 object-contain" /></a>
-  <a href="https://github.com/whokilleddb/"><img src="./imgs/github.png" class="w-20 h-20 object-contain" /></a>
-</div>
-
 
 <img src="https://i.ytimg.com/vi/u0lzyDeU90Q/maxresdefault.jpg" class="absolute bottom-4 right-4 w-48" />
 
@@ -79,57 +85,88 @@ You still should not be able to see this
 -->
 
 ---
-transition: slide-up
-level: 2
+transition: fade-out
+class: text-left
+title: Spot the difference #1
 ---
 
-# Navigation
+### Spot the difference #1
 
-Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/ui#navigation-bar)
+**Windsurf**
 
-## Keyboard Shortcuts
-
-|                                                     |                             |
-| --------------------------------------------------- | --------------------------- |
-| <kbd>right</kbd> / <kbd>space</kbd>                 | next animation or slide     |
-| <kbd>left</kbd>  / <kbd>shift</kbd><kbd>space</kbd> | previous animation or slide |
-| <kbd>up</kbd>                                       | previous slide              |
-| <kbd>down</kbd>                                     | next slide                  |
-
-<!-- https://sli.dev/guide/animations.html#click-animation -->
-<img
-  v-click
-  class="absolute -bottom-9 -left-7 w-80 opacity-50"
-  src="https://sli.dev/assets/arrow-bottom-left.svg"
-  alt=""
-/>
-<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">Here!</p>
+<div class="flex flex-col gap-2 mt-2">
+  <img src="./imgs/banter0.png" class="w-full max-h-72 object-contain object-left" />
+  <img src="./imgs/banter1.png" class="w-full max-h-72 object-contain object-left" />
+</div>
 
 ---
-layout: two-cols
-layoutClass: gap-16
+transition: fade-out
+class: text-left
+title: Spot the difference #2
 ---
 
-# Table of contents
+### Spot the difference #2
 
-You can use the `Toc` component to generate a table of contents for your slides:
+**VSCode**
 
-```html
-<Toc minDepth="1" maxDepth="1" />
-```
-
-The title will be inferred from your slide content, or you can override it with `title` and `level` in your frontmatter.
-
-::right::
-
-<Toc text-sm minDepth="1" maxDepth="2" />
+<div class="flex flex-col gap-2 mt-2">
+  <img src="./imgs/banter2.png" class="w-full max-h-72 object-contain object-left" />
+  <img src="./imgs/banter3.png" class="w-full max-h-72 object-contain object-left" />
+</div>
 
 ---
 layout: image-right
-image: https://cover.sli.dev
+image: https://www.freecodecamp.org/news/content/images/size/w2000/2021/08/vscode.png
 ---
 
-# Code
+# VSCode
+
+_"World's most popular IDE"_
+
+<div class="text-sm">
+
+- Built using **ELECTRON**
+
+```json [package.json]
+{
+  "electron": "39.8.8",
+}
+```
+- Has a dedicated market place
+- Supports **EXTENSIONS** from multiple sources
+
+- It separates different functionality into different processes 
+
+```js [abstractExtensionService.ts] 
+private _startExtensionHostsIfNecessary(isInitialStart: boolean, initialActivationEvents: string[])
+```
+
+</div>
+
+---
+layout: image-right
+image: https://www.freecodecamp.org/news/content/images/size/w2000/2021/08/vscode.png
+---
+
+# Why target VSCode?
+
+<div class="text-base">
+
+- Developers often have sensitive secrets: API keys, saved logins, private keys, etc - making them a prime target.
+- Cross platform - can make payloads for windows, mac and linux.
+- Payloads are run by Code.exe (on Windows) - a Microsoft signed binary.
+- <span class="text-red-500">*</span>Comparatively lesser known attack vector and EDR blindspot 
+ 
+_<span class="text-red-500">*</span>I wrote this line two years ago, not quite sure of it now_
+</div>
+
+---
+transition: fade-out
+class: text-left
+title: Rise of AI powered IDEs
+---
+
+# Rise of AI powered IDEs
 
 Use code snippets and get the highlighting directly, and even types hover!
 
