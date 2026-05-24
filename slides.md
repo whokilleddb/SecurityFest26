@@ -173,9 +173,7 @@ title: Rise of AI powered IDEs
 - 2024-2025 saw the rise of AI powered IDEs
 - We Cursor, Windsurf and a bunch of IDEs
 - \**Looks inside\** - Based out of VSCode
-
-_But there's a catch_
-
+- So, they are vulnerable to the same attacks
 
 ---
 layout: center
@@ -197,6 +195,59 @@ An Eclipse open-source project and alternative to the Visual Studio Marketplace
 Due to legal nuances, alternative code editors built on the open-source VS Code project are barred from accessing the official Microsoft Visual Studio Marketplace 
 
 This led to OpenVSX becoming really popular as an alternate extension store. However, it is not as extensively monitored as the VSCode Marketplace. It is very easy to spoof extensions, hijack search rankings, fake reviews - all of which has led to multiple security incidents over the last year
+
+---
+transition: fade-out
+---
+
+# The extension file format: VSIX
+
+<div class="text-sm" >
+
+A `.vsix` file is a ZIP archive using the Open Packaging Conventions (OPC) format.
+
+```{1|2|3-7}
+[Content_Types].xml          ← OPC MIME type mappings
+extension.vsixmanifest       ← VSCode metadata (XML)
+extension/
+├── package.json
+├── out/
+├── node_modules/
+└── README.md
+```
+
+VSIX Files are stored in `~/.vscode/extensions`. Each installed extension gets its own versioned subdirectory:
+
+```{1|2|3-5}
+~/.vscode/extensions/
+├── extensions.json 
+├── ms-python.python-2024.1.0/
+├── esbenp.prettier-vscode-10.4.0/
+└── attacker.malicious-ext-1.0.0/
+```
+
+The `extensions.json` file is our next target.  It is the extension profile manifest for the default user profile. VS Code uses it to track which extensions are installed — their identity, version, disk location, and metadata. 
+</div>
+
+---
+transition: fade-out
+layout: image-right
+image: https://i.imgflip.com/askwvd.jpg
+---
+
+# Attacks in the Wild
+
+- Solidity Extension Bonanza: _An extension which stole $500K_
+- Malicious Corgi: _AI assisted coding agent which exfils data to China_
+- TeamPCP github breach: _Because life hates me_
+- Glassworm campaigns: _They stole my idea_
+
+---
+---
+
+
+
+
 
 
 ---
