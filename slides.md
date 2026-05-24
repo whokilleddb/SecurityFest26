@@ -242,7 +242,6 @@ image: https://i.imgflip.com/askwvd.jpg
 # Attacks in the Wild
 
 - Solidity Extension Bonanza: _An extension which stole $500K_
-- Malicious Corgi: _AI assisted coding agent which exfils data to China_
 - TeamPCP github breach: _Because life hates me_
 - Glassworm campaigns: _They stole my idea_ 
 
@@ -457,6 +456,19 @@ Extensions flagged by [SecureAnnex](https://secureannex.com/blog/sleepyduck-malw
 <!-- _Here's a drinking game idea:_
 
 _Take a shot everytime you see a malicious extension trying to impersonate this one_ -->
+
+---
+transition: fade-out
+layout: center
+---
+
+<div class="text-center">
+
+# Addressing the elephant in the room: The Big Github Breach of the weeks gone by
+
+<img src="https://i.redd.it/the-address-me-elephant-in-the-room-v0-qei5c408f8of1.png?width=1500&format=png&auto=webp&s=0989ce8d5f510ce12c3fa24bf1adf71d32beed04" class="mx-auto w-150 h-auto object-cover" />
+
+</div>
 
 ---
 level: 2
