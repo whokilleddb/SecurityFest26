@@ -64,6 +64,10 @@ class: text-left
   <a href="https://github.com/whokilleddb/"><img src="./imgs/github.png" class="w-10 h-10object-contain" /></a>
 </div>
 
+<br />
+
+<div class="flex items-center gap-8">Cat Dad <img src="./imgs/car.jpg" class="w-30 h-30 object-contain" /></div>
+
 ::right::
 
 **Off work DB**
@@ -216,7 +220,7 @@ extension/
 └── README.md
 ```
 
-VSIX Files are stored in `~/.vscode/extensions`. Each installed extension gets its own versioned subdirectory:
+(Unzipped) VSIX Files are stored in `~/.vscode/extensions`. Each installed extension gets its own versioned subdirectory:
 
 ```{1|2|3-5}
 ~/.vscode/extensions/
@@ -255,13 +259,69 @@ First, we have a legit extension:
 - Has been around for 10 years on VSCode Marketplace and 5 years on OpenVSX
 - Provides Syntax Highlighting, compilation features, etc
 - 10.1M downloads, 1.78M installs
-_Attackers love it - a lot_
+
+<div class="text-xs">
+
+_Attackers love it - a lot._ 
+
+_Here's a drinking game idea:_
+
+_Take a shot everytime you see a malicious extension trying to impersonate this one_
+
+</div>
 
 ::right::
 
 <img src="./imgs/juanb.png" class="w-full max-h-50 object-cover object-left">
 <img src="./imgs/solidity1.png" class="w-full max-h-50 object-cover object-left">
 <img src="./imgs/solidity0.png" class="w-full max-h-50 object-cover object-left">
+
+---
+transition: fade-out
+layout: two-cols
+---
+
+Extensions flagged by [SecureAnnex](https://secureannex.com/blog/sleepyduck-malware/) impersonating the legit Solidity extension:
+
+<div class="text-xs">
+
+|ID|Date|
+|---|---|
+|solidityai.solidity|2025-07-02|
+|soliditysupport.solid|2025-07-02|
+|juanbianco.solibidity|2025-07-08|
+|ethereum.solidity-ethereum|2025-08-12|
+|ethfoundry.solidityethereum|2025-08-12|
+|juan-blanco.solidity|2025-08-13|
+|nomicfdn.hardhat-solidity|2025-08-13|
+|solidityai.solid|2025-08-15|
+|chaindevtools.solidity-pro|2025-08-18|
+|nomic-foundation.hardhat-solidity|2025-08-21|
+|nomic-fdn.hardhat-solidity|2025-08-22|
+|juan-blanco.vscode-solidity|2025-09-05|
+
+</div>
+
+::right::
+
+<div class="text-xs mt-9">
+
+|ID|Date|
+|---|---|
+|juanfblanco.solidity-ethereum-vsc|2025-09-05|
+|kineticsquid.solidity-ethereum-vsc|2025-09-05|
+|nomic-fdn.solidity-hardhat|2025-09-05|
+|solidity-syntax.solidity-lang|2025-09-12|
+|juanblonco.solidity|2025-09-14|
+|soldevdesigne.pythonweb|2025-09-14|
+|ethereum.solidity|2025-09-29|
+|nethereum.solidity|2025-09-29|
+|juanbianco.solidity-lang|2025-10-30|
+|juanrblanco.solidity-lang|2025-10-30|
+|juan-bianco.solidity-vlang|2025-10-31|
+
+</div>
+
 
 ---
 transition: fade-out
@@ -290,6 +350,37 @@ image: https://content.kaspersky-labs.com/fm/press-releases/85/85d34dbd312fa53e3
 - At a glance, you might notice some differences - but remember that a user sees this in the Cursor UI - which makes it difficult to distinguish between the two.
 
 <div class="absolute bottom-4 left-4 text-xs opacity-60"><a href="https://www.kaspersky.com/about/press-releases/kaspersky-uncovers-500k-crypto-heist-through-malicious-packages-targeting-cursor-developers">Source: Kaspersky GReAT Blog</a></div>
+
+---
+transition: fade-out
+layout: center
+---
+
+
+# Taking a look at the code
+
+
+---
+transition: fade-out
+layout: center
+---
+
+<div class="relative inline-block">
+  <img src="./imgs/soliditysc.png" />
+  <img src="https://i.redd.it/fwrxevbe9d2h1.jpeg" class="absolute inset-0 m-auto w-50 h-auto" />
+</div>
+
+---
+transition: fade-out
+layout: center
+---
+
+<div class="relative inline-block">
+  <img src="./imgs/soliditysczoom.png" class="max-h-100" />
+  <div class="absolute border-3 border-red-500" style="top: 30%; left: 10.2%; width: 17%; height: 21%;" />
+  <div class="absolute border-3 border-red-500" style="top: 30%; left: 80%; width: 21%; height: 23%;" />
+  <div class="absolute border-3 border-red-500" style="top: 49%; left: 4.9%; width: 10%; height: 20%;" />
+</div>
 
 ---
 level: 2
