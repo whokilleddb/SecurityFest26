@@ -194,7 +194,7 @@ An Eclipse open-source project and alternative to the Visual Studio Marketplace
 
 Due to legal nuances, alternative code editors built on the open-source VS Code project are barred from accessing the official Microsoft Visual Studio Marketplace 
 
-This led to OpenVSX becoming really popular as an alternate extension store. However, it is not as extensively monitored as the VSCode Marketplace. It is very easy to spoof extensions, hijack search rankings, fake reviews - all of which has led to multiple security incidents over the last year
+This led to OpenVSX becoming really popular as an alternate extension store. However, it is not as extensively monitored as the VSCode Marketplace. It is very easy to spoof extensions, hijack search rankings, fake reviews - all of which has led to multiple security incidents over the last year.
 
 ---
 transition: fade-out
@@ -262,6 +262,34 @@ _Attackers love it - a lot_
 <img src="./imgs/juanb.png" class="w-full max-h-50 object-cover object-left">
 <img src="./imgs/solidity1.png" class="w-full max-h-50 object-cover object-left">
 <img src="./imgs/solidity0.png" class="w-full max-h-50 object-cover object-left">
+
+---
+transition: fade-out
+layout: center
+---
+
+<br />
+<img src="./imgs/malicioussolidity.png">
+<br />
+<div class="text-center"><em>Extension which stole $500K from a Russian Crypto Dev</em></div>
+
+<div class="absolute bottom-4 right-4 text-xs opacity-60"><a href="https://www.kaspersky.com/about/press-releases/kaspersky-uncovers-500k-crypto-heist-through-malicious-packages-targeting-cursor-developers">Source: Kaspersky GReAT Blog</a></div>
+
+---
+transition: fade-out
+layout: image-right
+image: https://content.kaspersky-labs.com/fm/press-releases/85/85d34dbd312fa53e3f41c0a5fc72d585/processed/search-results-for-the-query-solidity-q93.png
+---
+
+
+# Solidity Extension Bonanza
+<br/>
+
+- Attackers manipulated SEO to make the fake extension appear before the legit one
+
+- At a glance, you might notice some differences - but remember that a user sees this in the Cursor UI - which makes it difficult to distinguish between the two.
+
+<div class="absolute bottom-4 left-4 text-xs opacity-60"><a href="https://www.kaspersky.com/about/press-releases/kaspersky-uncovers-500k-crypto-heist-through-malicious-packages-targeting-cursor-developers">Source: Kaspersky GReAT Blog</a></div>
 
 ---
 level: 2
