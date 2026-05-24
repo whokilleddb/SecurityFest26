@@ -471,6 +471,17 @@ layout: center
 </div>
 
 ---
+transition: fade-out
+layout: image-right
+image: https://preview.redd.it/i-nominate-john-cena-as-ember-island-toph-i-cant-see-you-v0-nb1hufxezzqa1.jpg?width=640&crop=smart&auto=webp&s=a37bcb58f5c0d6d3e7156ee8b14d16c47f06e4b4
+class: flex flex-col justify-center
+---
+
+# Glassworm
+
+_Self-Propagating Worm Using Invisible Code_
+
+---
 level: 2
 ---
 
