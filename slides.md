@@ -240,15 +240,28 @@ image: https://i.imgflip.com/askwvd.jpg
 - Solidity Extension Bonanza: _An extension which stole $500K_
 - Malicious Corgi: _AI assisted coding agent which exfils data to China_
 - TeamPCP github breach: _Because life hates me_
-- Glassworm campaigns: _They stole my idea_
+- Glassworm campaigns: _They stole my idea_ 
 
 ---
+transition: fade-out
+layout: two-cols
 ---
 
+# Solidity Extension Bonanza
 
+First, we have a legit extension:
 
+- Legitimate extension from a verified publisher
+- Has been around for 10 years on VSCode Marketplace and 5 years on OpenVSX
+- Provides Syntax Highlighting, compilation features, etc
+- 10.1M downloads, 1.78M installs
+_Attackers love it - a lot_
 
+::right::
 
+<img src="./imgs/juanb.png" class="w-full max-h-50 object-cover object-left">
+<img src="./imgs/solidity1.png" class="w-full max-h-50 object-cover object-left">
+<img src="./imgs/solidity0.png" class="w-full max-h-50 object-cover object-left">
 
 ---
 level: 2
