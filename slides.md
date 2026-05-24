@@ -264,9 +264,6 @@ First, we have a legit extension:
 
 _Attackers love it - a lot._ 
 
-_Here's a drinking game idea:_
-
-_Take a shot everytime you see a malicious extension trying to impersonate this one_
 
 </div>
 
@@ -276,52 +273,15 @@ _Take a shot everytime you see a malicious extension trying to impersonate this 
 <img src="./imgs/solidity1.png" class="w-full max-h-50 object-cover object-left">
 <img src="./imgs/solidity0.png" class="w-full max-h-50 object-cover object-left">
 
+
 ---
 transition: fade-out
-layout: two-cols
+layout: center
 ---
 
-Extensions flagged by [SecureAnnex](https://secureannex.com/blog/sleepyduck-malware/) impersonating the legit Solidity extension:
+# $500K FOR CODE HIGHLIGHTING
 
-<div class="text-xs">
-
-|ID|Date|
-|---|---|
-|solidityai.solidity|2025-07-02|
-|soliditysupport.solid|2025-07-02|
-|juanbianco.solibidity|2025-07-08|
-|ethereum.solidity-ethereum|2025-08-12|
-|ethfoundry.solidityethereum|2025-08-12|
-|juan-blanco.solidity|2025-08-13|
-|nomicfdn.hardhat-solidity|2025-08-13|
-|solidityai.solid|2025-08-15|
-|chaindevtools.solidity-pro|2025-08-18|
-|nomic-foundation.hardhat-solidity|2025-08-21|
-|nomic-fdn.hardhat-solidity|2025-08-22|
-|juan-blanco.vscode-solidity|2025-09-05|
-
-</div>
-
-::right::
-
-<div class="text-xs mt-9">
-
-|ID|Date|
-|---|---|
-|juanfblanco.solidity-ethereum-vsc|2025-09-05|
-|kineticsquid.solidity-ethereum-vsc|2025-09-05|
-|nomic-fdn.solidity-hardhat|2025-09-05|
-|solidity-syntax.solidity-lang|2025-09-12|
-|juanblonco.solidity|2025-09-14|
-|soldevdesigne.pythonweb|2025-09-14|
-|ethereum.solidity|2025-09-29|
-|nethereum.solidity|2025-09-29|
-|juanbianco.solidity-lang|2025-10-30|
-|juanrblanco.solidity-lang|2025-10-30|
-|juan-bianco.solidity-vlang|2025-10-31|
-
-</div>
-
+<div class="absolute bottom-4 right-4 text-xs opacity-60"><a href="https://www.kaspersky.com/about/press-releases/kaspersky-uncovers-500k-crypto-heist-through-malicious-packages-targeting-cursor-developers">Source: Kaspersky GReAT Blog</a></div>
 
 ---
 transition: fade-out
@@ -370,10 +330,15 @@ layout: center
   <img src="https://i.redd.it/fwrxevbe9d2h1.jpeg" class="absolute inset-0 m-auto w-50 h-auto" />
 </div>
 
+<div class="absolute bottom-4 left-4 text-xs opacity-60">Source: <a href="https://www.threat.rip/file/404dd413f10ccfeea23bfb00b0e403532fa8651bfb456d84b6a16953355a800a/community">index.js</a></div>
+
+
 ---
 transition: fade-out
 layout: center
 ---
+
+# Taking a closer look
 
 <div class="relative inline-block">
   <img src="./imgs/soliditysczoom.png" class="max-h-100" />
@@ -381,6 +346,117 @@ layout: center
   <div class="absolute border-3 border-red-500" style="top: 30%; left: 80%; width: 21%; height: 23%;" />
   <div class="absolute border-3 border-red-500" style="top: 49%; left: 4.9%; width: 10%; height: 20%;" />
 </div>
+
+<div class="absolute bottom-4 left-4 text-xs opacity-60">Source: <a href="https://www.threat.rip/file/404dd413f10ccfeea23bfb00b0e403532fa8651bfb456d84b6a16953355a800a/community">index.js</a></div>
+
+---
+transition: fade-out
+layout: center
+---
+
+🚨🚨🚨 HOL'UP WAIT A MINUTE 🚨🚨🚨
+
+![](./imgs/solidityscpretty.png)
+
+---
+transition: fade-out
+layout: image
+image: https://media3.giphy.com/media/v1.Y2lkPTZjMDliOTUybnN3eGlxbnoxNm04Nm14MWI0aDBhcjB0Ym5pNHpwdzVkcDdkcXVjdiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/GV3aYiEP8qbao/giphy.gif
+---
+
+---
+transition: fade-out
+layout: two-cols
+---
+
+# Round 2: Oldest Typosquatting Trick
+
+<br />
+
+**Actual Extension:**
+
+Author name: juanblanco ← small L
+
+**Malicious Extension:**
+
+Author name: juanbIanco ← capital I
+
+<br />
+<div class="text-xs">
+
+_The font makes it especially difficult to differentiate between the two._
+
+</div>
+
+::right::
+
+![](https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2025/07/09225435/open-source-package6.png)
+
+<div class="absolute bottom-4 left-4 text-xs opacity-60"><a href="https://www.kaspersky.com/about/press-releases/kaspersky-uncovers-500k-crypto-heist-through-malicious-packages-targeting-cursor-developers">Source: Kaspersky GReAT Blog</a></div>
+
+---
+transition: fade-out
+layout: default
+class: p-0
+---
+
+<div class="grid grid-cols-2 w-full h-full">
+  <img src="https://media3.giphy.com/media/v1.Y2lkPTZjMDliOTUybnN3eGlxbnoxNm04Nm14MWI0aDBhcjB0Ym5pNHpwdzVkcDdkcXVjdiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/GV3aYiEP8qbao/giphy.gif" class="w-full h-full object-cover" />
+  <img src="https://media3.giphy.com/media/v1.Y2lkPTZjMDliOTUybnN3eGlxbnoxNm04Nm14MWI0aDBhcjB0Ym5pNHpwdzVkcDdkcXVjdiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/GV3aYiEP8qbao/giphy.gif" class="w-full h-full object-cover" />
+  <img src="https://media3.giphy.com/media/v1.Y2lkPTZjMDliOTUybnN3eGlxbnoxNm04Nm14MWI0aDBhcjB0Ym5pNHpwdzVkcDdkcXVjdiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/GV3aYiEP8qbao/giphy.gif" class="w-full h-full object-cover" />
+  <img src="https://media3.giphy.com/media/v1.Y2lkPTZjMDliOTUybnN3eGlxbnoxNm04Nm14MWI0aDBhcjB0Ym5pNHpwdzVkcDdkcXVjdiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/GV3aYiEP8qbao/giphy.gif" class="w-full h-full object-cover" />
+</div>
+
+---
+transition: fade-out
+layout: two-cols
+---
+
+Extensions flagged by [SecureAnnex](https://secureannex.com/blog/sleepyduck-malware/) impersonating the legit Solidity extension:
+
+<div class="text-xs">
+
+|ID|Date|
+|---|---|
+|solidityai.solidity|2025-07-02|
+|soliditysupport.solid|2025-07-02|
+|juanbianco.solibidity|2025-07-08|
+|ethereum.solidity-ethereum|2025-08-12|
+|ethfoundry.solidityethereum|2025-08-12|
+|juan-blanco.solidity|2025-08-13|
+|nomicfdn.hardhat-solidity|2025-08-13|
+|solidityai.solid|2025-08-15|
+|chaindevtools.solidity-pro|2025-08-18|
+|nomic-foundation.hardhat-solidity|2025-08-21|
+|nomic-fdn.hardhat-solidity|2025-08-22|
+|juan-blanco.vscode-solidity|2025-09-05|
+
+</div>
+
+::right::
+
+<div class="text-xs mt-9">
+
+|ID|Date|
+|---|---|
+|juanfblanco.solidity-ethereum-vsc|2025-09-05|
+|kineticsquid.solidity-ethereum-vsc|2025-09-05|
+|nomic-fdn.solidity-hardhat|2025-09-05|
+|solidity-syntax.solidity-lang|2025-09-12|
+|juanblonco.solidity|2025-09-14|
+|soldevdesigne.pythonweb|2025-09-14|
+|ethereum.solidity|2025-09-29|
+|nethereum.solidity|2025-09-29|
+|juanbianco.solidity-lang|2025-10-30|
+|juanrblanco.solidity-lang|2025-10-30|
+|juan-bianco.solidity-vlang|2025-10-31|
+
+</div>
+
+
+<!-- _Here's a drinking game idea:_
+
+_Take a shot everytime you see a malicious extension trying to impersonate this one_ -->
 
 ---
 level: 2
