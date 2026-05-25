@@ -483,29 +483,129 @@ class: text-center
 
 # How it happened
 
-<div class="flex flex-wrap items-center justify-center gap-1 mt-6 text-xs">
-  <v-click><div class="bg-gray-700 text-white rounded px-3 py-2 max-w-36 text-center">Supply Chain attack to yoink the token of a contributor</div></v-click>
-  <v-click><span class="text-white text-lg">→</span><div class="bg-gray-700 text-white rounded px-3 py-2 max-w-36 text-center">Attacker pushes orphan commit to nrwl/nx</div></v-click>
-  <v-click><span class="text-white text-lg">→</span><div class="bg-gray-700 text-white rounded px-3 py-2 max-w-36 text-center">Attacker publishes v18.95.0 to VSCode Marketplace</div></v-click>
-  <v-click><span class="text-white text-lg">→</span><div class="bg-gray-700 text-white rounded px-3 py-2 max-w-36 text-center">VSCode autoupdates to new version</div></v-click>
-  <v-click><span class="text-white text-lg">→</span><div class="bg-gray-700 text-white rounded px-3 py-2 max-w-36 text-center">Github engineer has extension installed</div></v-click>
-  <v-click><span class="text-white text-lg">→</span><div class="bad-stuff bg-red-700 text-white rounded px-3 py-2 max-w-36 text-center font-bold">🔥 Bad stuff happens 🔥</div></v-click>
+<div id="chain-container" class="flex flex-wrap items-center justify-center gap-1 mt-6 text-xs">
+  <v-click><div class="chain-node bg-gray-700 text-white rounded px-3 py-2 max-w-36 text-center">Supply Chain attack to yoink the token of a contributor</div></v-click>
+  <v-click><span class="chain-arrow text-white text-lg">→</span><div class="chain-node bg-gray-700 text-white rounded px-3 py-2 max-w-36 text-center">Attacker pushes orphan commit to nrwl/nx</div></v-click>
+  <v-click><span class="chain-arrow text-white text-lg">→</span><div class="chain-node bg-gray-700 text-white rounded px-3 py-2 max-w-36 text-center">Attacker publishes v18.95.0 to VSCode Marketplace</div></v-click>
+  <v-click><span class="chain-arrow text-white text-lg">→</span><div class="chain-node bg-gray-700 text-white rounded px-3 py-2 max-w-36 text-center">VSCode autoupdates to new version</div></v-click>
+  <v-click><span class="chain-arrow text-white text-lg">→</span><div class="chain-node bg-gray-700 text-white rounded px-3 py-2 max-w-36 text-center">Github engineer has extension installed</div></v-click>
+  <v-click><div class="bad-stuff text-center">🔥 BAD STUFF HAPPENS 🔥</div></v-click>
 </div>
 
 <style>
 @keyframes chaos {
-  0%   { transform: rotate(-4deg) scale(1);    background-color: #b91c1c; }
-  20%  { transform: rotate(4deg)  scale(1.08); background-color: #f97316; }
-  40%  { transform: rotate(-6deg) scale(1.12); background-color: #b91c1c; }
-  60%  { transform: rotate(6deg)  scale(1.08); background-color: #f97316; }
-  80%  { transform: rotate(-4deg) scale(1.04); background-color: #b91c1c; }
-  100% { transform: rotate(-4deg) scale(1);    background-color: #b91c1c; }
+  0%,100% { transform: rotate(-3deg) scale(1);    filter: drop-shadow(-2px -2px 0 #000) drop-shadow(2px 2px 0 #000) drop-shadow(0 0  8px rgba(255,40,0,.6)); }
+  25%     { transform: rotate(3deg)  scale(1.08); filter: drop-shadow(-2px -2px 0 #000) drop-shadow(2px 2px 0 #000) drop-shadow(0 0 18px rgba(255,40,0,1)); }
+  50%     { transform: rotate(-4deg) scale(1.12); filter: drop-shadow(-2px -2px 0 #000) drop-shadow(2px 2px 0 #000) drop-shadow(0 0 22px rgba(255,80,0,1)); }
+  75%     { transform: rotate(4deg)  scale(1.08); filter: drop-shadow(-2px -2px 0 #000) drop-shadow(2px 2px 0 #000) drop-shadow(0 0 18px rgba(255,40,0,1)); }
+}
+@keyframes explode-particle {
+  0%   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0); }
+}
+@keyframes node-shatter {
+  0%   { transform: scale(1);    opacity: 1; }
+  40%  { transform: scale(1.15); opacity: 0.9; }
+  100% { transform: scale(0);    opacity: 0; }
+}
+@keyframes pop-in {
+  0%   { transform: scale(0) rotate(-8deg); opacity: 0; filter: none; }
+  60%  { transform: scale(1.3) rotate(3deg); opacity: 1; filter: drop-shadow(-2px -2px 0 #000) drop-shadow(2px 2px 0 #000) drop-shadow(0 0 12px rgba(255,40,0,.8)); }
+  100% { transform: scale(1)   rotate(0deg); opacity: 1; filter: drop-shadow(-2px -2px 0 #000) drop-shadow(2px 2px 0 #000) drop-shadow(0 0  8px rgba(255,40,0,.6)); }
 }
 .bad-stuff {
-  animation: chaos 0.4s infinite;
+  opacity: 0;
   display: inline-block;
+  font-family: Impact, 'Arial Black', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  white-space: nowrap;
+  color: #ff2020;
+  filter: drop-shadow(-2px -2px 0 #000) drop-shadow(2px 2px 0 #000);
+}
+.chain-node.shattering,
+.chain-arrow.shattering {
+  animation: node-shatter 0.35s ease-in forwards !important;
 }
 </style>
+
+<script setup>
+import { inject, watch, computed, onMounted, onUnmounted } from 'vue'
+
+const _ctx = inject('$$slidev-clicks-context', null)
+const _clicks = computed(() => (_ctx?.value)?.current ?? 0)
+let _exploded = false
+
+function spawnParticles(rect) {
+  const COLORS = ['#ef4444','#f97316','#fbbf24','#f59e0b','#dc2626','#ff6b35','#fb923c','#fcd34d']
+  const cx = rect.left + rect.width / 2
+  const cy = rect.top  + rect.height / 2
+  for (let i = 0; i < 16; i++) {
+    const angle = (i / 16) * Math.PI * 2 + (Math.random() - 0.5) * 0.6
+    const speed = 55 + Math.random() * 130
+    const dx    = Math.cos(angle) * speed
+    const dy    = Math.sin(angle) * speed
+    const size  = 4 + Math.random() * 9
+    const dur   = 0.45 + Math.random() * 0.45
+    const p = document.createElement('div')
+    p.style.cssText = [
+      `position:fixed`,
+      `left:${cx}px`,`top:${cy}px`,
+      `width:${size}px`,`height:${size}px`,
+      `border-radius:50%`,
+      `background:${COLORS[i % COLORS.length]}`,
+      `pointer-events:none`,`z-index:9999`,
+      `animation:explode-particle ${dur}s ease-out forwards`,
+      `--dx:${dx}px`,`--dy:${dy}px`,
+    ].join(';')
+    document.body.appendChild(p)
+    setTimeout(() => p.remove(), (dur + 0.15) * 1000)
+  }
+}
+
+function triggerExplosion() {
+  if (_exploded) return
+  _exploded = true
+
+  const bad = document.querySelector('.bad-stuff')
+  const container = document.querySelector('#chain-container')
+  if (container) container.style.minHeight = container.offsetHeight + 'px'
+
+  const targets = document.querySelectorAll('.chain-node, .chain-arrow')
+
+  targets.forEach((el, i) => {
+    setTimeout(() => {
+      spawnParticles(el.getBoundingClientRect())
+      el.classList.add('shattering')
+    }, i * 40)
+  })
+
+  const settleDur = targets.length * 40 + 450
+  setTimeout(() => {
+    if (!container || !bad) return
+
+    Array.from(container.children).forEach(child => {
+      if (child !== bad && !child.contains(bad)) child.style.display = 'none'
+    })
+    container.style.flexWrap = 'nowrap'
+    container.style.flexDirection = 'column'
+    container.style.alignItems = 'center'
+    container.style.justifyContent = 'center'
+
+    bad.style.opacity = '1'
+    bad.style.animation = 'pop-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards'
+    setTimeout(() => { bad.style.animation = 'chaos 0.4s infinite' }, 550)
+  }, settleDur)
+}
+
+watch(_clicks, (n) => { if (n >= 6) triggerExplosion() })
+
+onMounted(() => { _exploded = false })
+onUnmounted(() => { _exploded = false })
+</script>
 
 ---
 transition: fade-out
