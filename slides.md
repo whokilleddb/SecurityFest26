@@ -89,6 +89,15 @@ You still should not be able to see this
 
 ---
 transition: fade-out
+layout: center
+---
+
+# Spot The Difference
+
+**One of the following extensions is malicious and would establish a reverse shell on your machine, and the other one is downloaded from the respective Market Place**
+
+---
+transition: fade-out
 class: text-left
 title: Spot the difference #1
 ---
@@ -462,13 +471,24 @@ transition: fade-out
 layout: center
 ---
 
+# The Github breack of the weeks gone by
+
+Supply chain + VSCode extension 
+
+---
+transition: fade-out
+layout: center
+---
+<!-- 
 <div class="text-center">
 
 # Addressing the elephant in the room: The Big Github Breach of the weeks gone by
 
 <img src="https://i.redd.it/the-address-me-elephant-in-the-room-v0-qei5c408f8of1.png?width=1500&format=png&auto=webp&s=0989ce8d5f510ce12c3fa24bf1adf71d32beed04" class="mx-auto w-150 h-auto object-cover" />
 
-</div>
+</div> -->
+
+# Glassworm: The self propagating worm
 
 ---
 transition: fade-out
@@ -477,9 +497,100 @@ image: https://preview.redd.it/i-nominate-john-cena-as-ember-island-toph-i-cant-
 class: flex flex-col justify-center
 ---
 
-# Glassworm
+# Glassworm v1
 
-_Self-Propagating Worm Using Invisible Code_
+You can't see me - Glassworm (probably)
+
+---
+transition: fade-out
+layout: center
+---
+
+
+# Glassworm v1 source code
+
+<img src="./imgs/glasswormv1.png" class="max-w h-100 object-cover" />
+
+
+<div class="absolute bottom-4 left-4 text-xs opacity-60"><a href="https://www.koi.ai/blog/glassworm-first-self-propagating-worm-using-invisible-code-hits-openvsx-marketplace">Source: KOI</a></div>
+
+
+
+---
+transition: fade-out
+layout: center
+---
+
+<img src="./imgs/po.png" class="max-w h-120 object-cover" />
+
+
+---
+transition: fade-out
+layout: center
+---
+
+# Unicode
+
+<img src="./imgs/po1.png" class="max-w h-120 object-cover" />
+
+---
+transition: fade-out
+layout: two-cols
+---
+
+# Unicode Magic
+
+![](./imgs/glasswormv1.png)
+
+::right::
+
+The malicious code is encoded using unprintable Unicode characters.
+From KOI researchers:
+
+_“Let me say that again: the malware is invisible. Not obfuscated. Not hidden in a minified file. Actually invisible to the human eye.”_
+
+
+---
+transition: fade-out
+layout: two-cols
+---
+
+# List of compromised extensions
+
+![](./imgs/codejoy.png)
+
+::right::
+
+## OpenVSX Extensions (with malicious versions):
+
+- codejoy.codejoy-vscode-extension@1.8.3
+- codejoy.codejoy-vscode-extension@1.8.4
+- l-igh-t.vscode-theme-seti-folder@1.2.3
+- kleinesfilmroellchen.serenity-dsl-syntaxhighlight@0.3.2
+- JScearcy.rust-doc-viewer@4.2.1
+- SIRILMP.dark-theme-sm@3.11.4
+- CodeInKlingon.git-worktree-menu@1.0.9
+- CodeInKlingon.git-worktree-menu@1.0.91
+- ginfuru.better-nunjucks@0.3.2
+- ellacrity.recoil@0.7.4
+- grrrck.positron-plus-1-e@0.0.71
+- jeronimoekerdt.color-picker-universal@2.8.91
+- srcery-colors.srcery-colors@0.3.9
+- sissel.shopify-liquid@4.0.1
+- TretinV3.forts-api-extention@0.3.1
+
+## Microsoft VSCode Extensions:
+- cline-ai-main.cline-ai-agent@3.1.3
+
+
+---
+transition: fade-out
+layout: center
+---
+
+# But Glassworm wasn't done yet
+
+<img src="./imgs/coolerglassworm.png" class="max-w h-120 object-cover" />
 
 ---
 level: 2
