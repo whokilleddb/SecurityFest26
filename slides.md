@@ -540,23 +540,22 @@ const _clicks = computed(() => (_ctx?.value)?.current ?? 0)
 let _exploded = false
 
 function spawnParticles(rect) {
-  const COLORS = ['#ef4444','#f97316','#fbbf24','#f59e0b','#dc2626','#ff6b35','#fb923c','#fcd34d']
   const cx = rect.left + rect.width / 2
   const cy = rect.top  + rect.height / 2
-  for (let i = 0; i < 16; i++) {
-    const angle = (i / 16) * Math.PI * 2 + (Math.random() - 0.5) * 0.6
+  for (let i = 0; i < 8; i++) {
+    const angle = (i / 8) * Math.PI * 2 + (Math.random() - 0.5) * 0.6
     const speed = 55 + Math.random() * 130
     const dx    = Math.cos(angle) * speed
     const dy    = Math.sin(angle) * speed
-    const size  = 4 + Math.random() * 9
+    const size  = 40 + Math.random() * 40
     const dur   = 0.45 + Math.random() * 0.45
     const p = document.createElement('div')
+    p.textContent = '💥'
     p.style.cssText = [
       `position:fixed`,
       `left:${cx}px`,`top:${cy}px`,
-      `width:${size}px`,`height:${size}px`,
-      `border-radius:50%`,
-      `background:${COLORS[i % COLORS.length]}`,
+      `font-size:${size}px`,
+      `line-height:1`,
       `pointer-events:none`,`z-index:9999`,
       `animation:explode-particle ${dur}s ease-out forwards`,
       `--dx:${dx}px`,`--dy:${dy}px`,
