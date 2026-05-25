@@ -590,7 +590,20 @@ layout: center
 
 # But Glassworm wasn't done yet
 
-<img src="./imgs/coolerglassworm.png" class="max-w h-120 object-cover" />
+<img src="./imgs/coolerglassworm.png"  class="max-w h-120 object-cover"  />
+
+
+---
+transition: fade-out
+layout: center
+---
+
+# Making first contact
+
+
+<img src="./imgs/materialicon.png"  class="max-w h-120 object-cover" />
+
+_“Material Icon” Theme - affected with Glassworm_
 
 ---
 level: 2
