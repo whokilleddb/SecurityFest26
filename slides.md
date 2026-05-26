@@ -860,7 +860,9 @@ graph TD
 
 ::right::
 
-```js {3-28|11-19|20-28} {class:'children:text-[0.4rem]'}
+<div class="tiny-code">
+
+```js {3-|2,4-5|10|11-18|19-27}
 const os = require('os');
 let isActivated = false;
 async function activate(context) {
@@ -915,20 +917,24 @@ async function activate(context) {
     }
   }
 }
-function deactivate() {
-  isActivated = false;
-}
-
-module.exports = {
-  activate,
-  deactivate,
-};
 ```
+
+</div>
 
 <div class="absolute bottom-4 left-4 text-xs opacity-60"><a href="https://www.virustotal.com/gui/file/9212a99a7730b9ee306e804af358955c3104e5afce23f7d5a207374482ab2f8f/details">VirusTotal</a></div>
 
 <style>
 .mermaid svg .label, .mermaid svg .node, .mermaid svg .edgePath { animation: none !important; transition: none !important; }
+.tiny-code pre,
+.tiny-code code,
+.tiny-code .shiki,
+.tiny-code .slidev-code {
+  font-size: 8px !important;
+  line-height: 1.2 !important;
+}
+.tiny-code pre code span {
+  font-size: 8px !important;
+}
 </style>
 
 ---
