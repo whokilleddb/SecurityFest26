@@ -980,7 +980,33 @@ layout: center
 <div class="flex items-center justify-center gap-8">
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/250px-Unofficial_JavaScript_logo_2.svg.png" class="w-45 h-45 object-contain" />
   <span class="text-6xl font-bold">+</span>
-  <img src="https://static.wikitide.net/zenithwiki/0/0d/IDAIcon.png" class="w-48 h-48 object-contain" />
+  <div class="relative w-48 h-48 flex items-center justify-center">
+    <img src="https://static.wikitide.net/zenithwiki/0/0d/IDAIcon.png" class="w-48 h-48 object-contain" />
+    <v-click>
+      <span class="absolute -top-10 left-1/2 -translate-x-1/2 text-5xl text-red-500">↓</span>
+    </v-click>
+    <v-click>
+      <span class="absolute -bottom-10 left-1/2 -translate-x-1/2 text-5xl text-red-500">↑</span>
+    </v-click>
+    <v-click>
+      <span class="absolute top-1/2 -left-10 -translate-y-1/2 text-5xl text-red-500">→</span>
+    </v-click>
+    <v-click>
+      <span class="absolute top-1/2 -right-10 -translate-y-1/2 text-5xl text-red-500">←</span>
+    </v-click>
+    <v-click>
+      <span class="absolute -top-8 -left-8 text-5xl text-red-500">↘</span>
+    </v-click>
+    <v-click>
+      <span class="absolute -top-8 -right-8 text-5xl text-red-500">↙</span>
+    </v-click>
+    <v-click>
+      <span class="absolute -bottom-8 -left-8 text-5xl text-red-500">↗</span>
+    </v-click>
+    <v-click>
+      <span class="absolute -bottom-8 -right-8 text-5xl text-red-500">↖</span>
+    </v-click>
+  </div>
 </div>
 
 ---
@@ -995,29 +1021,44 @@ transition: fade-out
 layout: two-cols
 ---
 
+<div class="h-full flex flex-col justify-center pr-12">
+
 # Going Native
 
 - Native code allows for direct interactions with the OS APIs
 - Most techniques are easier to implement in low level languages which compile to native code
 - Native code in extensions are usually more difficult to detect and reverse engineer 
 
+</div>
+
 ::right::
+
+<div class="h-full flex flex-col justify-center pl-12">
 
 # The Problem
 
 - Electron v20 does not support ffi
 - Implementation like `ffi-rs` ultimately compile into node-addons themselves
 
+<br />
+
 # The Solution
 
 - Cut out the middleman and write our own modules
+
+</div>
 
 ---
 transition: fade-in
 layout: center
 ---
 
-<img src="./imgs/willsmith.png"  class="max-w h-120 object-cover" /> https://nodejs.org/api/addons.html
+<div class="flex items-center gap-8">
+  <img src="./imgs/willsmith.png" class="max-w h-120 object-cover" />
+  <div class="-mt-60" v-motion :initial="{ x: -200, opacity: 0 }" :enter="{ x: 0, opacity: 1, transition: { delay: 300, duration: 700 } }">
+    https://nodejs.org/api/addons.html
+  </div>
+</div>
 
 ---
 transition: fade-in
@@ -1026,7 +1067,10 @@ layout: center
 
 # Node Addons
 
-_Addons are <span  v-click.fade class="opacity-60" > dynamically-linked shared objects </span>written in C++. The require() function can load addons as ordinary Node.js modules. Addons provide an interface between JavaScript and C/C++ libraries._
+<div class="italic">
+<span class="transition-all duration-500" :class="{ 'opacity-30': $clicks >= 1 }">Addons are </span>dynamically-linked shared objects<span class="transition-all duration-500" :class="{ 'opacity-30': $clicks >= 1 }"> written in C++. The require() function can load addons as ordinary Node.js modules. Addons provide an interface between JavaScript and C/C++ libraries.</span>
+<span v-click></span>
+</div>
 
 _- Official NodeJS documentation_
 
