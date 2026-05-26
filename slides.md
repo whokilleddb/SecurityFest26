@@ -780,7 +780,7 @@ layout: two-cols
 
 <img src="./imgs/codejoy.png" >
 
-<span>Same story here as well: Malicious code was pushed in v1.8.3 - and VSCode autoupdated the extension leading to 35.8K+ compromised machines 😀🔫</span>
+<span>Same story here as well: Malicious code was pushed in v1.8.3 - and VSCode autoupdated the extension leading to 35.8K+ compromised machines</span>
 
 <div class="absolute bottom-4 left-4 text-xs opacity-60"><a href="https://www.koi.ai/blog/glassworm-first-self-propagating-worm-using-invisible-code-hits-openvsx-marketplace">Source: KOI</a></div>
 
@@ -833,13 +833,17 @@ layout: center
 
 <img src="./imgs/materialicon.png"  class="max-w h-90 object-cover" />
 
-_“Material Icon” Theme - affected with Glassworm_
+<br />
+
+<div class=”w-full text-center”>”Material Icon” Theme - containing the Glassworm v2</div>
 
 ---
 transition: fade-out
 layout: two-cols
 
 ---
+
+<div class="w-full h-100 scale-65 origin-top">
 
 ```mermaid
 graph TD
@@ -849,18 +853,16 @@ graph TD
  B --> |False| D["init()"]
  D --> E{"Check OS"}
  E --> |Win32| F["load os.node"]
- E --> |Darwin| F["load darwin.node"]
+ E --> |Darwin| G["load darwin.node"]
 ```
+
+</div>
 
 ::right::
 
-
-<div class="text-xs" >
-
-```js {11-19|20-28}
+```js {3-28|11-19|20-28} {class:'children:text-[0.4rem]'}
 const os = require('os');
 let isActivated = false;
-
 async function activate(context) {
   if (isActivated) return;
   isActivated = true;
@@ -923,10 +925,11 @@ module.exports = {
 };
 ```
 
-</div>
-
-
 <div class="absolute bottom-4 left-4 text-xs opacity-60"><a href="https://www.virustotal.com/gui/file/9212a99a7730b9ee306e804af358955c3104e5afce23f7d5a207374482ab2f8f/details">VirusTotal</a></div>
+
+<style>
+.mermaid svg .label, .mermaid svg .node, .mermaid svg .edgePath { animation: none !important; transition: none !important; }
+</style>
 
 ---
 transition: fade-out
