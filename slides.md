@@ -980,6 +980,18 @@ layout: center
 <div class="flex items-center justify-center gap-8">
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/250px-Unofficial_JavaScript_logo_2.svg.png" class="w-45 h-45 object-contain" />
   <span class="text-6xl font-bold">+</span>
+  <img src="https://pbs.twimg.com/profile_images/1273414624486944769/ugO-Dwae_400x400.jpg" class="w-48 h-48 object-contain" />
+</div>
+
+
+---
+transition: fade-out
+layout: center
+---
+
+<div class="flex items-center justify-center gap-8">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/250px-Unofficial_JavaScript_logo_2.svg.png" class="w-45 h-45 object-contain" />
+  <span class="text-6xl font-bold">+</span>
   <div class="relative w-48 h-48 flex items-center justify-center">
     <img src="https://static.wikitide.net/zenithwiki/0/0d/IDAIcon.png" class="w-48 h-48 object-contain" />
     <v-click>
@@ -1074,6 +1086,300 @@ layout: center
 
 _- Official NodeJS documentation_
 
+---
+transition: fade-out
+layout: center
+class: text-center
+---
+
+# How addons are loaded
+
+(Target OS: Windows)
+
+```js
+node -e "process.stdout.write(process.binding('natives')['internal/modules/cjs/loader'])"
+```
+
+---
+layout: default
+title: How addons are loaded (On Windows)
+---
+
+# How addons are loaded (On Windows)
+
+<div class="text-base">
+
+<v-switch>
+
+<template #1>
+
+**1. JS — `Module.prototype.require`** &nbsp;<span class="opacity-60">lib/internal/modules/cjs/loader.js</span>
+
+```js {*}{maxHeight:'380px'}
+Module.prototype.require = function(id) {
+  validateString(id, 'id');
+  requireDepth++;
+  try { return wrapModuleLoad(id, this, /* isMain */ false); }
+  finally { requireDepth--; }
+};
+```
+
+</template>
+
+<template #2>
+
+**2. `Module.prototype.load`** — dispatch by extension
+
+```js {6}{maxHeight:'380px'}
+Module.prototype.load = function(filename) {
+  this.filename ??= filename;
+  this.paths ??= Module._nodeModulePaths(path.dirname(filename));
+  const extension = findLongestRegisteredExtension(filename);
+  Module._extensions[extension](this, filename);   // → .node handler
+  this.loaded = true;
+};
+```
+
+</template>
+
+<template #3>
+
+**3. `Module._extensions['.node']`** — bounce to `process.dlopen`
+
+```js {*}{maxHeight:'380px'}
+Module._extensions['.node'] = function(module, filename) {
+  return process.dlopen(module, path.toNamespacedPath(filename));
+};
+```
+
+</template>
+
+<template #4>
+
+**4. C++ — `node::binding::DLOpen`** &nbsp;<span class="opacity-60">src/node_binding.cc</span>
+
+```cpp {6}{maxHeight:'380px'}
+void DLOpen(const FunctionCallbackInfo<Value>& args) {
+  Environment* env = Environment::GetCurrent(args);
+  int32_t flags = DLib::kDefaultFlags;
+  // ... arg parsing ...
+  node::Utf8Value filename(env->isolate(), args[1]);
+  env->TryLoadAddon(*filename, flags, [&](DLib* dlib) {
+    const bool is_opened = dlib->Open();
+    // ... resolve init callback, call it on exports ...
+  });
+}
+```
+
+</template>
+
+<template #5>
+
+**5. `Environment::TryLoadAddon`** &nbsp;<span class="opacity-60">src/env.cc</span>
+
+```cpp {3}{maxHeight:'380px'}
+void Environment::TryLoadAddon(const char* filename, int flags,
+    const std::function<bool(binding::DLib*)>& was_loaded) {
+  loaded_addons_.emplace_back(filename, flags);
+  if (!was_loaded(&loaded_addons_.back())) loaded_addons_.pop_back();
+}
+```
+
+</template>
+
+<template #6>
+
+**6. `DLib::Open` (Windows)** &nbsp;<span class="opacity-60">src/node_binding.cc</span>
+
+```cpp {2}{maxHeight:'380px'}
+bool DLib::Open() {
+  int ret = uv_dlopen(filename_.c_str(), &lib_);
+  if (ret == 0) { handle_ = static_cast<void*>(lib_.handle); return true; }
+  errmsg_ = uv_dlerror(&lib_);
+  uv_dlclose(&lib_);
+  return false;
+}
+```
+
+</template>
+
+<template #7>
+
+**7. libuv — `uv_dlopen`** &nbsp;<span class="opacity-60">deps/uv/src/win/dl.c</span>
+
+```c {7-9}{maxHeight:'380px'}
+int uv_dlopen(const char* filename, uv_lib_t* lib) {
+  WCHAR filename_w[32768];
+  ssize_t r = uv_wtf8_length_as_utf16(filename);
+  if (r < 0) return uv__dlerror(lib, filename, ERROR_NO_UNICODE_TRANSLATION);
+  uv_wtf8_to_utf16(filename, filename_w, r);
+
+  lib->handle = LoadLibraryExW(filename_w,
+                               NULL,
+                               LOAD_WITH_ALTERED_SEARCH_PATH);
+  if (lib->handle == NULL)
+    return uv__dlerror(lib, filename, GetLastError());
+  return 0;
+}
+```
+
+</template>
+
+<template #8>
+
+<div class="mt-4 px-3 py-2 rounded bg-emerald-500/10 border border-emerald-500/30">
+  <span class="font-mono text-sm">kernel32!LoadLibraryExW → ntdll!LdrLoadDll → addon's DllMain</span>
+</div>
+
+</template>
+
+</v-switch>
+
+</div>
+
+
+---
+transition: fade-out
+layout: default
+class: text-center
+---
+
+<style>
+.slidev-layout {
+  background-color: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+}
+.crabman-img {
+  max-height: 10vh;
+  max-width: 5vw;
+}
+</style>
+
+# Enter Crabman
+
+<img src="https://user-images.githubusercontent.com/8974888/231858967-7c37bf1e-335b-4f5a-9760-da97be9f54bb.png" class="crabman-img" />
+
+
+---
+transition: fade-out
+layout: default
+class: text-left
+---
+
+# Why the crab lang?
+
+_A completely unbiased take_
+
+- The official Node Addon documentation talks about writing add-ons in C++ (ew)
+
+- C++ add ons usually require a bunch of setup, like working with `node-gyp`
+
+- Rust, via the `neon-rs` package makes build setup easier
+
+- Rust is just better<span style="color: red">*</span>
+
+<img src="./imgs/cpprust.png" class="max-h-50 object-contain mx-auto" />
+
+<div class="absolute bottom-4 left-4 text-xs opacity-60"><span style="color: red">*</span>Source: Trust me</div>
+
+---
+transition: fade-out
+layout: default
+class: text-left
+---
+
+# Writing a Hello World addon
+
+```bash {1-2|3-12|13-}
+# Init a project
+$ npm init neon hello-world
+
+# Inspecting the file structure
+$ tree hello-world 
+hello-world
+├── Cargo.toml
+├── package.json
+├── README.md
+└── src
+    └── lib.rs
+
+# Inspecting the contents 
+$ cat hello-world/src/lib.rs 
+#[neon::export]
+fn hello(name: String) -> String {
+    format!("hello {name}")
+}
+
+// #[neon::main]
+// fn main(_cx: ModuleContext) -> NeonResult<()> {
+//     println!("module is loaded!");
+//     Ok(())
+// }    
+```
+
+---
+transition: fade-out
+layout: default
+class: text-left
+---
+
+# Inspecting the contents of `package.json`
+
+```json {5|8-9|10-11|13-14}
+{
+  "name": "hello-world",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.node",
+  "scripts": {
+    "test": "cargo test",
+    "cargo-build": "cargo build --message-format=json-render-diagnostics > cargo.log",
+    "cross-build": "cross build --message-format=json-render-diagnostics > cross.log",
+    "postcargo-build": "neon dist < cargo.log",
+    "postcross-build": "neon dist -m /target < cross.log",
+    "debug": "npm run cargo-build --",
+    "build": "npm run cargo-build -- --release",
+    "cross": "npm run cross-build -- --release"
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@neon-rs/cli": "0.1.82"
+  }
+}
+```
+
+---
+transition: fade-out
+layout: default
+class: text-left
+---
+
+# Using our addon
+
+```bash {1-2|3-5|6-}
+# Make sure we have the dependencies
+$ npm install
+
+# Compile stuff
+$ npm run build 
+
+# Run that
+$ node
+Welcome to Node.js v25.9.0.
+Type ".help" for more information.
+> hw = require("./index.node")
+{ hello: [Function: hello] }
+> hw.hello("world")
+'hello world'
+``` 
+
+_Time to put it into an extension_
 
 ---
 level: 2
