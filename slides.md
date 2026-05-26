@@ -1382,6 +1382,135 @@ Type ".help" for more information.
 _Time to put it into an extension_
 
 ---
+transition: fade-out
+layout: default
+class: text-left
+---
+
+# Creating a demo extension
+
+```bash {1-3|5-7|8-}
+# Install dependencies
+$ npm install --global yo generator-code
+$ npm install -g @vscode/vsce
+
+# Create a demo extension
+$ yo code --skip-cache --ask-answered --open --extensionType js --pkgManager npm --extensionDisplayName DemoExtension --quick demo_extension
+
+# Examining the folder structure
+$ tree  -L 1 demoextension 
+demoextension
+├── CHANGELOG.md
+├── eslint.config.mjs
+├── extension.js
+├── jsconfig.json
+├── node_modules
+├── package-lock.json
+├── package.json
+├── README.md
+├── test
+└── vsc-extension-quickstart.md
+```
+
+---
+transition: fade-out
+layout: two-cols
+---
+
+<div class="h-full flex items-center">
+
+## package.json
+
+</div>
+
+::right::
+
+<style scoped>
+.slidev-code, .slidev-code * { font-size: 0.55rem !important; line-height: 0.85rem !important; }
+</style>
+
+```json
+{
+  "name": "demoextension",
+  "displayName": "DemoExtension",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.120.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [{
+      "command": "demoextension.helloWorld",
+      "title": "Hello World"
+    }]
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.120.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "eslint": "^9.39.3",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2"
+  }
+}
+```
+
+---
+transition: fade-out
+---
+
+
+```js
+// The module 'vscode' contains the VS Code extensibility API
+// Import the module and reference it with the alias vscode in your code below
+const vscode = require('vscode');
+
+// This method is called when your extension is activated
+// Your extension is activated the very first time the command is executed
+
+/**
+ * @param {vscode.ExtensionContext} context
+ */
+function activate(context) {
+
+	// Use the console to output diagnostic information (console.log) and errors (console.error)
+	// This line of code will only be executed once when your extension is activated
+	console.log('Congratulations, your extension "demoextension" is now active!');
+
+	// The command has been defined in the package.json file
+	// Now provide the implementation of the command with  registerCommand
+	// The commandId parameter must match the command field in package.json
+	const disposable = vscode.commands.registerCommand('demoextension.helloWorld', function () {
+		// The code you place here will be executed every time your command is executed
+
+		// Display a message box to the user
+		vscode.window.showInformationMessage('Hello World from DemoExtension!');
+	});
+
+	context.subscriptions.push(disposable);
+}
+
+// This method is called when your extension is deactivated
+function deactivate() {}
+
+module.exports = {
+	activate,
+	deactivate
+}
+```
+
+
+---
 level: 2
 ---
 
