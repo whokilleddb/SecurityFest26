@@ -942,11 +942,46 @@ transition: fade-out
 layout: center
 ---
 
-# Loading the binary in IDA
+<h1 class="text-center">Loading the binary in IDA</h1>
 
-<img src="./imgs/glasswormida.png" />
+<img src="./imgs/glasswormida.png" class="mx-auto" />
 
-_Strings from IDA_
+
+---
+transition: fade-out
+layout: center
+---
+
+# Recap
+
+---
+transition: fade-out
+layout: center
+---
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/250px-Unofficial_JavaScript_logo_2.svg.png?utm_source=commons.wikimedia.org&utm_campaign=parser&utm_content=thumbnail)
+
+---
+transition: fade-out
+layout: center
+---
+
+<div class="flex items-center justify-center gap-8">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/250px-Unofficial_JavaScript_logo_2.svg.png" class="w-45 h-45 object-contain" />
+  <span class="text-6xl font-bold">+</span>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/PowerShell_5.0_icon.png/250px-PowerShell_5.0_icon.png" class="w-48 h-48 object-contain" />
+</div>
+
+---
+transition: fade-out
+layout: center
+---
+
+<div class="flex items-center justify-center gap-8">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/250px-Unofficial_JavaScript_logo_2.svg.png" class="w-45 h-45 object-contain" />
+  <span class="text-6xl font-bold">+</span>
+  <img src="https://static.wikitide.net/zenithwiki/0/0d/IDAIcon.png" class="w-48 h-48 object-contain" />
+</div>
 
 ---
 layout: center
