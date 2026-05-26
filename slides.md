@@ -611,8 +611,15 @@ transition: fade-out
 layout: two-cols
 ---
 
+<br/>
+<br/>
+
 - The code checks VS Code's globalState for the key `nxConsole.mcpExtensionInstalledSha`. 
+<br/>
+
 - If the stored value does not match the hardcoded SHA, it creates a background VS Code Task called `install-mcp-extension`
+<br/>
+
 - The task fetches the Git tree at that SHA from the `nrwl/nx` which delivers the second stage payload
 
 ::right::
@@ -648,13 +655,6 @@ function Efn(t) {
 
 ```
 
----
-transition: fade-out
-layout: center
----
-
-![](https://cdn.prod.website-files.com/673b71f0790aabf30bd30bf8/6a0b762bbe575f3f76590d62_mermaid-diagram-2026-05-18-132704.png)
-
 <div class="absolute bottom-4 left-4 text-xs opacity-60"><a href="https://www.stepsecurity.io/blog/nx-console-vs-code-extension-compromised">Source: StepSecurity</a></div>
 
 ---
@@ -662,9 +662,26 @@ transition: fade-out
 layout: center
 ---
 
-## TL;DR - Github became _open source_, for a price
+<img src="https://cdn.prod.website-files.com/673b71f0790aabf30bd30bf8/6a0b762bbe575f3f76590d62_mermaid-diagram-2026-05-18-132704.png" class="w-full h-120 object-cover"  />
 
-![](https://pbs.twimg.com/media/HItbXhvW4AAMD8W.jpg)
+<div class="absolute bottom-4 left-4 text-xs opacity-60"><a href="https://www.stepsecurity.io/blog/nx-console-vs-code-extension-compromised">Source: StepSecurity</a></div>
+
+---
+transition: fade-out
+layout: two-cols
+---
+
+<div class="flex items-center justify-center h-full">
+
+# TL;DR - Github became _open source_, for a price
+
+</div>
+
+::right::
+
+<div class="flex items-center justify-center h-full">
+<img src="https://pbs.twimg.com/media/HItbXhvW4AAMD8W.jpg" class="max-h w-120 object-cover"  />
+</div>
 
 ---
 transition: fade-out
@@ -720,9 +737,10 @@ transition: fade-out
 layout: center
 ---
 
-# Unicode
-
-<img src="./imgs/po1.png" class="max-w h-120 object-cover" />
+<div class="relative inline-block">
+  <img src="./imgs/po1.png" class="max-w h-120 object-cover" />
+  <h1 class="absolute bottom-35 right-49 text-5xl font-bold text-white-400 drop-shadow-lg">UNICODE CHARACTERS</h1>
+</div>
 
 ---
 transition: fade-out
@@ -731,14 +749,24 @@ layout: two-cols
 
 # Unicode Magic
 
+<div class="flex items-center justify-center h-4/5">
+
 ![](./imgs/glasswormv1.png)
+
+</div>
 
 ::right::
 
+<div class="flex flex-col justify-center h-full pl-8 text-xs">
+
 The malicious code is encoded using unprintable Unicode characters.
 From KOI researchers:
+_”Let me say that again: the malware is invisible. Not obfuscated. Not hidden in a minified file. Actually invisible to the human eye.”_
 
-_“Let me say that again: the malware is invisible. Not obfuscated. Not hidden in a minified file. Actually invisible to the human eye.”_
+_Fun Fact: VSCode cant render some common emojis like 🚨_
+![](./imgs/noemoji.png)
+
+</div>
 
 
 ---
@@ -913,8 +941,6 @@ layout: two-cols
 ---
 
 # Going Native
-
-
 
 - Native code allows for direct interactions with the OS APIs
 - Most techniques are easier to implement in low level languages which compile to native code
