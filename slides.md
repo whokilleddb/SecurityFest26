@@ -776,11 +776,21 @@ layout: two-cols
 
 # List of compromised extensions
 
-![](./imgs/codejoy.png)
+<div class="flex flex-col h-2/5">
+
+<img src="./imgs/codejoy.png" >
+
+<span>Same story here as well: Malicious code was pushed in v1.8.3 - and VSCode autoupdated the extension leading to 35.8K+ compromised machines 😀🔫</span>
+
+<div class="absolute bottom-4 left-4 text-xs opacity-60"><a href="https://www.koi.ai/blog/glassworm-first-self-propagating-worm-using-invisible-code-hits-openvsx-marketplace">Source: KOI</a></div>
+
+</div>
 
 ::right::
 
-## OpenVSX Extensions (with malicious versions):
+<div class="flex flex-col justify-center h-full pl-8 text-xs">
+
+#### OpenVSX Extensions (with malicious versions):
 
 - codejoy.codejoy-vscode-extension@1.8.3
 - codejoy.codejoy-vscode-extension@1.8.4
@@ -798,9 +808,10 @@ layout: two-cols
 - sissel.shopify-liquid@4.0.1
 - TretinV3.forts-api-extention@0.3.1
 
-## Microsoft VSCode Extensions:
+#### Microsoft VSCode Extensions:
 - cline-ai-main.cline-ai-agent@3.1.3
 
+</div>
 
 ---
 transition: fade-out
