@@ -1745,6 +1745,24 @@ And this should install the extension:
 
 ---
 transition: fade-out
+---
+
+Triggering the payload
+
+<img src="./imgs/vscodep2.png" />
+
+<br />
+
+<img src="./imgs/vscodep3.png" v-click.fade-in />
+
+---
+transition: fade-out
+---
+
+# Shortcomings
+
+---
+transition: fade-out
 layout: center
 class: text-center
 ---
