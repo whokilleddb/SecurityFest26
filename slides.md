@@ -840,7 +840,6 @@ layout: center
 ---
 transition: fade-out
 layout: two-cols
-
 ---
 
 <div class="w-full h-100 scale-65 origin-top">
@@ -1761,6 +1760,106 @@ transition: fade-out
 
 # Shortcomings
 
+- Source code needs to be available
+- No one has ever installed an extension from a VSIX file
+- The page shows that's the extension has been installed from a VSIX
+
+<div class="relative inline-block">
+  <img src="./imgs/vscodep1.png" class="max-h-100" />
+  <div class="absolute border-3 border-red-500" style="top: 64%; left: 76%; width: 15%; height: 13%;" />
+</div>
+
+---
+transition: fade-out
+class: text-center
+---
+
+<div class="flex items-center justify-center gap-8 h-full">
+  <h1>So, no source code?</h1>
+  <img src="https://i.imgflip.com/64sz4u.png?a494376" class="max-h-80 object-contain" />
+</div>
+
+---
+transition: fade-out
+layout: center
+---
+
+# New Target
+
+![](./imgs/liveserver.png)
+
+_Even though it is technically open source - we will treat this as closed source (we dont want to violate any Licenses on stage)_
+
+---
+transition: fade-out
+---
+
+# Getting the source
+
+```bash {1-2|3-4|5-6|7-8|9-}
+# Fetch the API from the marketplace
+$ curl https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ritwickdey/vsextensions/LiveServer/5.7.9/vspackage\?target\=win32-x64 --output target.vsix  
+# Extract the vsix
+$ 7z e target.vsix 
+# unzip the extension
+$ unzip target
+# Cleanup
+$ rm target*
+# Checking the file structure
+$ tree -L 2
+.
+├── [Content_Types].xml
+├── extension
+│   ├── CHANGELOG.md
+│   ├── images
+│   ├── LICENSE.txt
+│   ├── node_modules
+│   ├── out
+│   ├── package.json
+│   └── README.md
+```
+
+---
+transition: fade-out
+---
+
+- Copy the target addon into `extension/out/src/`
+- Now we can directly update the `extension/out/src/extension.js` file:
+
+```js
+function activate(context) {
+  require("./index.node").hello();
+  ...
+  ...
+}
+```
+- Then, just zip the contents again
+
+```bash {1-2|3-}
+$ ls
+[Content_Types].xml    extension              extension.vsixmanifest
+
+$ zip -r ritwick.vsix *
+```
+
+Now we can install it normally using:
+
+```bash
+$ code --install-extension ritwick.vsix
+```
+
+Triggering the extension now should lead to the addon execution
+
+---
+transition: fade-out
+---
+
+_Proof or did not happen_
+
+<img src="./imgs/liveserverdemo.png" class="max-h-80 mx-auto object-contain" />
+
+However, the IoC from the last payload still remain. Time to move onto the next method.
+
 ---
 transition: fade-out
 layout: center
@@ -1771,6 +1870,36 @@ class: text-center
 
 _Fake it till you make it_
 
+---
+transition: fade-out
+layout: center
+---
+
+# Before that, Questions!
+
+- The extension source code does not have any metadata built in - so how is code getting the stats (including the blue tick)? 
+
+- How is code determining the source? 
+
+---
+transition: fade-out
+layout: center
+---
+
+<div class="relative">
+
+From the **`src/vs/platform/extensionManagement/common/extensionGalleryService.ts`** source file we can infer the following:
+
+- Class: `AbstractExtensionGalleryService`
+- `queryGalleryExtensions()` — builds and POSTs requests to `{serviceUrl}/extensionquery`
+- `queryRawGalleryExtensions()` — constructs the raw HTTP request body
+- `toExtension()` — transforms the raw API response (`IRawGalleryExtension`) into `IGalleryExtension`:
+  - maps `statistics` array entries by name: `"install"` → `installCount`, `"averagerating"` → `rating`, `"ratingcount"` → `ratingCount`
+  - extracts asset URIs, version properties, publisher verification
+
+<img v-click src="https://media.tenor.com/ebd_n1MipXcAAAAM/cat-meme.gif" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-50 object-contain z-10" />
+
+</div>
 
 ---
 transition: fade-out
@@ -1835,78 +1964,3 @@ $ cat ~/.vscode/extensions/extensions.json| jq
 }
 </style>
 
----
-level: 2
----
-
-# Shiki Magic Move
-
-Powered by [shiki-magic-move](https://shiki-magic-move.netlify.app/), Slidev supports animations across multiple code snippets.
-
-Add multiple code blocks and wrap them with <code>````md magic-move</code> (four backticks) to enable the magic move. For example:
-
-````md magic-move {lines: true}
-```ts {*|2|*}
-// step 1
-const author = reactive({
-  name: 'John Doe',
-  books: [
-    'Vue 2 - Advanced Guide',
-    'Vue 3 - Basic Guide',
-    'Vue 4 - The Mystery'
-  ]
-})
-```
-
-```ts {*|1-2|3-4|3-4,8}
-// step 2
-export default {
-  data() {
-    return {
-      author: {
-        name: 'John Doe',
-        books: [
-          'Vue 2 - Advanced Guide',
-          'Vue 3 - Basic Guide',
-          'Vue 4 - The Mystery'
-        ]
-      }
-    }
-  }
-}
-```
-
-```ts
-// step 3
-export default {
-  data: () => ({
-    author: {
-      name: 'John Doe',
-      books: [
-        'Vue 2 - Advanced Guide',
-        'Vue 3 - Basic Guide',
-        'Vue 4 - The Mystery'
-      ]
-    }
-  })
-}
-```
-
-Non-code blocks are ignored.
-
-```vue
-<!-- step 4 -->
-<script setup>
-const author = {
-  name: 'John Doe',
-  books: [
-    'Vue 2 - Advanced Guide',
-    'Vue 3 - Basic Guide',
-    'Vue 4 - The Mystery'
-  ]
-}
-</script>
-```
-````
-
----
