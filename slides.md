@@ -1966,5 +1966,136 @@ $ cat ~/.vscode/extensions/extensions.json| jq
 </style>
 
 ---
+transition: fade-out
+---
+
+Fetching the stats
+
+```bash {-|4}
+$ curl -X POST "https://marketplace.visualstudio.com/_apis/public/gallery/extensionquery" -H "Content-Type: application/json" -H "Accept: application/json;api-version=7.2-preview" -H "User-Agent: VSCode" -d '{
+    "filters": [{
+      "criteria": [
+        { "filterType": 7, "value": "ms-vscode.live-server" }
+      ],
+      "pageSize": 1,
+      "pageNumber": 1,
+      "sortBy": 0,
+      "sortOrder": 0
+    }],
+    "assetTypes": [],
+    "flags": 950
+  }' | jq
+
+```
+
+---
+transition: fade-out
+layout: two-cols
+class: center
+---
+
+<div class="tiny-code-local h-full flex flex-col justify-center">
+
+```json {-|6-10|13-14|21-27|0}
+{
+  "results": [{
+    "extensions": [{
+      "publisher": {
+        "publisherId": "5f5636e7-69ed-...",
+        "publisherName": "ms-vscode",
+        "displayName": "Microsoft",
+        "flags": "verified",
+        "domain": "https://microsoft.com",
+        "isDomainVerified": true
+      },
+      "extensionId": "4eae7368-ec63-...",
+      "extensionName": "live-server",
+      "displayName": "Live Preview",
+      "flags": "validated, public, preview",
+      "lastUpdated": "2026-05-25T09:22:12.87Z",
+      "publishedDate": "2021-06-21T20:33:59.11Z",
+      "releaseDate": "2021-06-21T20:33:59.11Z",
+      "shortDescription": "Hosts a local server...",
+      "versions": [{
+        "version": "0.5.2026052501",
+        "flags": "validated",
+        "lastUpdated": "2026-05-25T09:22:12.87Z",
+        "files": [{ /* More info */ }],
+        "properties": [ /* More info */ ],
+        "assetUri": "https://ms-vscode.gallery...",
+        "fallbackAssetUri": "https://ms-vscode..."
+      }],
+      "categories": ["Other"],
+      "tags": [
+        "browser", "html", "live", "livepreview",
+        "preview", "refresh", "reload"
+      ],
+```
+
+</div>
+
+::right::
+
+<div class="tiny-code-local h-full flex flex-col justify-center">
+
+```json {0|1-19}
+      "statistics": [
+        { "statisticName": "install",
+          "value": 12685904.0 },
+        { "statisticName": "averagerating",
+          "value": 4.4358973503112793 },
+        { "statisticName": "ratingcount",
+          "value": 78.0 },
+        { "statisticName": "trendingdaily",
+          "value": 0.0024848936217040547 },
+        { "statisticName": "trendingmonthly",
+          "value": 2.2341560224473458 },
+        { "statisticName": "trendingweekly",
+          "value": 0.43457212170417531 },
+        { "statisticName": "updateCount",
+          "value": 23771546.0 },
+        { "statisticName": "weightedRating",
+          "value": 4.4379817198469258 },
+        { "statisticName": "downloadCount",
+          "value": 56767.0 }
+      ],
+      "deploymentType": 0
+    }
+    ],
+    "pagingToken": null,
+    "resultMetadata": [{
+      "metadataType": "ResultCount",
+      "metadataItems": [
+        { "name": "TotalCount", "count": 1 }
+      ]
+    }
+    ]
+  }]
+}
+```
+
+</div>
+
+<style>
+.tiny-code-local pre,
+.tiny-code-local code,
+.tiny-code-local .shiki,
+.tiny-code-local .slidev-code {
+  font-size: 8px !important;
+  line-height: 1.2 !important;
+}
+.tiny-code-local pre code span {
+  font-size: 8px !important;
+}
+</style>
+
+---
+transition: fade-out
+layout: center
+---
+
+# Installing a demo extension and checking `extensions.json`
+
+
 
 ---
