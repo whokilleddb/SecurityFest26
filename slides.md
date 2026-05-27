@@ -2091,11 +2091,67 @@ class: center
 
 ---
 transition: fade-out
-layout: center
+layout: default
+class: text-left
 ---
 
 # Installing a demo extension and checking `extensions.json`
 
+```bash
 
+# Create a demo extension
+$ yo code --skip-cache --ask-answered --open --extensionType js --pkgManager npm --extensionDisplayName DemoExtension --quick demo_extension
+
+# Go inside the folder
+cd  demoextension
+
+# Just to make vsce happy
+echo "" > README.md
+
+# Package demo extension
+vsce package --no-yarn --allow-missing-repository --skip-license
+
+# Install extension
+code --install-extension demoextension-0.0.1.vsix
+```
+---
+layout: default
+class: text-left
+---
+
+```bash {-|4-6|19}
+$ cat ~/.vscode/extensions/extensions.json | jq
+[
+  {
+    "identifier": {
+      "id": "undefined_publisher.demoextension"
+    },
+    "version": "0.0.1",
+    "location": {
+      "$mid": 1,
+      "fsPath": "/Users/db/.vscode/extensions/undefined_publisher.demoextension-0.0.1",
+      "external": "file:///Users/db/.vscode/extensions/undefined_publisher.demoextension-0.0.1",
+      "path": "/Users/db/.vscode/extensions/undefined_publisher.demoextension-0.0.1",
+      "scheme": "file"
+    },
+    "relativeLocation": "undefined_publisher.demoextension-0.0.1",
+    "metadata": {
+      "installedTimestamp": 1779897094747,
+      "pinned": true,
+      "source": "vsix"
+    }
+  }
+]
+```
 
 ---
+layout: image-left
+image: https://render.fineartamerica.com/images/rendered/default/print/8/5.5/break/images/artworkimages/medium/2/thinking-cat-douglas-sacha.jpg
+---
+
+# What if we?
+
+- Read the current package.json 
+- Make a POST request to Marketplace API with the target extension 
+- Update package.json
+- Update extensions.json
