@@ -1888,6 +1888,8 @@ layout: center
 
 <div class="relative">
 
+# Answers!
+
 From the **`src/vs/platform/extensionManagement/common/extensionGalleryService.ts`** source file we can infer the following:
 
 - Class: `AbstractExtensionGalleryService`
@@ -1903,7 +1905,6 @@ From the **`src/vs/platform/extensionManagement/common/extensionGalleryService.t
 
 ---
 transition: fade-out
-layout: center
 ---
 
 <h1 class="!text-2xl !mb-2">Revisiting some old stuff</h1>
@@ -1964,3 +1965,6 @@ $ cat ~/.vscode/extensions/extensions.json| jq
 }
 </style>
 
+---
+
+---
