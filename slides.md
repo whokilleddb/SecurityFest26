@@ -1605,7 +1605,100 @@ class: text-center
 # Time to make it believable
 
 ---
+transition: fade-out
+layout: center
+class: text-center
 ---
+
+# Method #1 
+
+_Yoink the extension from source_
+
+---
+transition: fade-out
+layout: center
+---
+
+Clone the repo locally 
+
+```bash
+$ git clone https://github.com/microsoft/vscode-livepreview
+$ cd vscode-livepreview
+```
+
+---
+transition: fade-out
+layout: center
+class: text-center
+---
+
+# Method #2
+
+_Fake it till you make it_
+
+
+---
+transition: fade-out
+layout: center
+---
+
+<h1 class="!text-2xl !mb-2">Revisiting some old stuff</h1>
+
+<div class="text-sm">
+
+A while back we looked in the `~/.vscode/extensions` and there was a file in there `extensions.json` - time to examine it's contents.
+
+</div>
+
+<div class="tiny-code-local">
+
+```bash {1|4-6|7|10-12|19}
+$ cat ~/.vscode/extensions/extensions.json| jq
+[
+  {
+    "identifier": {
+      "id": "ms-vscode.live-server"
+    },
+    "version": "0.4.19",
+    "location": {
+      "$mid": 1,
+      "fsPath": "/Users/db/.vscode/extensions/ms-vscode.live-server-0.4.19",
+      "external": "file:///Users/db/.vscode/extensions/ms-vscode.live-server-0.4.19",
+      "path": "/Users/db/.vscode/extensions/ms-vscode.live-server-0.4.19",
+      "scheme": "file"
+    },
+    "relativeLocation": "ms-vscode.live-server-0.4.19",
+    "metadata": {
+      "installedTimestamp": 1779876318258,
+      "pinned": false,
+      "source": "gallery",
+      "id": "4eae7368-ec63-429d-8449-57a7df5e2117",
+      "publisherId": "5f5636e7-69ed-4afe-b5d6-8d231fb3d3ee",
+      "publisherDisplayName": "Microsoft",
+      "targetPlatform": "undefined",
+      "updated": false,
+      "private": false,
+      "isPreReleaseVersion": false,
+      "hasPreReleaseVersion": false
+    }
+  }
+]
+```
+
+</div>
+
+<style>
+.tiny-code-local pre,
+.tiny-code-local code,
+.tiny-code-local .shiki,
+.tiny-code-local .slidev-code {
+  font-size: 10px !important;
+  line-height: 1.25 !important;
+}
+.tiny-code-local pre code span {
+  font-size: 10px !important;
+}
+</style>
 
 ---
 level: 2
