@@ -155,6 +155,8 @@ private _startExtensionHostsIfNecessary(isInitialStart: boolean, initialActivati
 
 </div>
 
+<!-- Electron comes with its own challenges - like sandboxes, the APIs it ha access to, js itself - and more -->
+
 ---
 layout: image-right
 image: https://www.freecodecamp.org/news/content/images/size/w2000/2021/08/vscode.png
@@ -211,6 +213,14 @@ This led to OpenVSX becoming really popular as an alternate extension store. How
 
 ---
 transition: fade-out
+layout: center
+class: text-center
+---
+
+# Understanding Extensions
+
+---
+transition: fade-out
 ---
 
 # The extension file format: VSIX
@@ -239,7 +249,7 @@ extension/
 └── attacker.malicious-ext-1.0.0/
 ```
 
-The `extensions.json` file is our next target.  It is the extension profile manifest for the default user profile. VS Code uses it to track which extensions are installed — their identity, version, disk location, and metadata. 
+The `extensions.json` file is interesting.  It is the extension profile manifest for the default user profile. VS Code uses it to track which extensions are installed — their identity, version, disk location, and metadata. 
 </div>
 
 ---
@@ -484,7 +494,7 @@ class: text-center
 # How it happened
 
 <div id="chain-container" class="flex flex-wrap items-center justify-center gap-1 mt-6 text-xs">
-  <v-click><div class="chain-node bg-gray-700 text-white rounded px-3 py-2 max-w-36 text-center">Supply Chain attack to yoink the token of a contributor</div></v-click>
+  <v-click><div class="chain-node bg-gray-700 text-white rounded px-3 py-2 max-w-36 text-center">Supply Chain attack to yoink the token of a NX Console contributor</div></v-click>
   <v-click><span class="chain-arrow text-white text-lg">→</span><div class="chain-node bg-gray-700 text-white rounded px-3 py-2 max-w-36 text-center">Attacker pushes orphan commit to nrwl/nx</div></v-click>
   <v-click><span class="chain-arrow text-white text-lg">→</span><div class="chain-node bg-gray-700 text-white rounded px-3 py-2 max-w-36 text-center">Attacker publishes v18.95.0 to VSCode Marketplace</div></v-click>
   <v-click><span class="chain-arrow text-white text-lg">→</span><div class="chain-node bg-gray-700 text-white rounded px-3 py-2 max-w-36 text-center">VSCode autoupdates to new version</div></v-click>
@@ -561,7 +571,7 @@ function spawnParticles(rect) {
       `--dx:${dx}px`,`--dy:${dy}px`,
     ].join(';')
     document.body.appendChild(p)
-    setTimeout(() => p.remove(), (dur + 0.15) * 1000)
+    setTimeout(() => p.remove(), (dur + 0.15) * 2000)
   }
 }
 
