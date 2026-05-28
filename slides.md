@@ -1339,7 +1339,7 @@ class: text-left
 
 # Inspecting the contents of `package.json`
 
-```json {5|8-9|10-11|13-14}
+```json {5|8-9|13-14}
 {
   "name": "hello-world",
   "version": "0.1.0",
@@ -1474,7 +1474,7 @@ layout: two-cols
   }
 }
 ```
-
+<!-- Talk about activation events. Extensions can be triggered by activation events or commands -->
 ---
 transition: fade-out
 layout: two-cols
@@ -1890,7 +1890,7 @@ layout: center
 
 - The extension source code does not have any metadata built in - so how is code getting the stats (including the blue tick)? 
 
-- How is code determining the source? 
+- How is code determining the source as VSIX? 
 
 ---
 transition: fade-out
@@ -2114,16 +2114,16 @@ class: text-left
 $ yo code --skip-cache --ask-answered --open --extensionType js --pkgManager npm --extensionDisplayName DemoExtension --quick demo_extension
 
 # Go inside the folder
-cd  demoextension
+$ cd  demoextension
 
 # Just to make vsce happy
-echo "" > README.md
+$ echo "" > README.md
 
 # Package demo extension
-vsce package --no-yarn --allow-missing-repository --skip-license
+$ vsce package --no-yarn --allow-missing-repository --skip-license
 
 # Install extension
-code --install-extension demoextension-0.0.1.vsix
+$ code --install-extension demoextension-0.0.1.vsix
 ```
 ---
 layout: default
@@ -2321,11 +2321,36 @@ layout: center
 - Maintain a SBOM (Software Bill of Materials) to monitor for any discovered vulnerabilities
 
 ---
-layout: image
-image: https://img.magnific.com/free-vector/flat-design-end-screen-background_23-2150998486.jpg?semt=ais_hybrid&w=740&q=80
-backgroundSize: contain
+layout: center
+
 ---
 
+# Future Plans
 
+- MCP servers are coming up hot
+- Claude Desktop Apps use a very similar format
+- Experiment with putting addons in MCP servers
+- Profit?
+
+---
+layout: two-cols
+class: items-center gap-8
+---
+
+<div class="flex flex-col justify-center h-full">
+
+# Thanks for attending
+
+Do check us out at Antisyphon Training!
+
+</div>
+
+::right::
+
+<div class="flex flex-col justify-center h-full pl-8">
+
+![](./imgs/feedback.svg)
+
+</div>
 
 ---
