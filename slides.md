@@ -499,6 +499,7 @@ class: text-center
   <v-click><span class="chain-arrow text-white text-lg">→</span><div class="chain-node bg-gray-700 text-white rounded px-3 py-2 max-w-36 text-center">Attacker publishes v18.95.0 to VSCode Marketplace</div></v-click>
   <v-click><span class="chain-arrow text-white text-lg">→</span><div class="chain-node bg-gray-700 text-white rounded px-3 py-2 max-w-36 text-center">VSCode autoupdates to new version</div></v-click>
   <v-click><span class="chain-arrow text-white text-lg">→</span><div class="chain-node bg-gray-700 text-white rounded px-3 py-2 max-w-36 text-center">Github engineer has extension installed</div></v-click>
+  <v-click><span class="hidden"></span></v-click>
   <v-click><div class="bad-stuff text-center">🔥 BAD STUFF HAPPENS 🔥</div></v-click>
 </div>
 
@@ -610,7 +611,7 @@ function triggerExplosion() {
   }, settleDur)
 }
 
-watch(_clicks, (n) => { if (n >= 6) triggerExplosion() })
+watch(_clicks, (n) => { if (n >= 7) triggerExplosion() })
 
 onMounted(() => { _exploded = false })
 onUnmounted(() => { _exploded = false })
