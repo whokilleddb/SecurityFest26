@@ -2395,7 +2395,6 @@ layout: center
 - Profit?
 
 ---
-layout: two-cols
 class: items-center gap-8
 ---
 
@@ -2411,7 +2410,6 @@ Do check us out at Antisyphon Training!
 
 <div class="flex flex-col justify-center h-full pl-8">
 
-![](./imgs/feedback.svg)
 
 </div>
 
