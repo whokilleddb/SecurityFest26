@@ -1501,10 +1501,14 @@ layout: two-cols
 ::right::
 
 <style scoped>
-.slidev-code, .slidev-code * { font-size: 0.55rem !important; line-height: 0.85rem !important; }
+.slidev-code, .slidev-code *, .shiki-magic-move-container, .shiki-magic-move-container * { font-size: 0.5rem !important; line-height: 0.72rem !important; }
 </style>
 
-```json {2|5|6-8|12|13|14-19}
+<div style="height: 450px; overflow: auto">
+
+````md magic-move {maxHeight:'450px'}
+
+```json 
 {
   "name": "demoextension",
   "displayName": "DemoExtension",
@@ -1539,6 +1543,34 @@ layout: two-cols
   }
 }
 ```
+
+```json {2|5|6-8|12|13|14-19}
+{
+  "name": "demoextension",
+  "displayName": "DemoExtension",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.120.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [{
+      "command": "demoextension.helloWorld",
+      "title": "Hello World"
+    }]
+  },
+}
+```
+
+````
+
+</div>
+
 <!-- Talk about activation events. Extensions can be triggered by activation events or commands -->
 ---
 transition: fade-out
