@@ -2086,13 +2086,12 @@ $ curl -X POST "https://marketplace.visualstudio.com/_apis/public/gallery/extens
 
 ---
 transition: fade-out
-layout: two-cols
 class: center
 ---
 
-<div class="tiny-code-local h-full flex flex-col justify-center">
+<div style="max-height: 450px; overflow: auto">
 
-```json {-|6-10|13-14|21-27|0}
+```json {-|6-10|13-14|21-27|34-53}
 {
   "results": [{
     "extensions": [{
@@ -2126,15 +2125,6 @@ class: center
         "browser", "html", "live", "livepreview",
         "preview", "refresh", "reload"
       ],
-```
-
-</div>
-
-::right::
-
-<div class="tiny-code-local h-full flex flex-col justify-center">
-
-```json {0|1-19}
       "statistics": [
         { "statisticName": "install",
           "value": 12685904.0 },
@@ -2171,19 +2161,6 @@ class: center
 ```
 
 </div>
-
-<style>
-.tiny-code-local pre,
-.tiny-code-local code,
-.tiny-code-local .shiki,
-.tiny-code-local .slidev-code {
-  font-size: 8px !important;
-  line-height: 1.2 !important;
-}
-.tiny-code-local pre code span {
-  font-size: 8px !important;
-}
-</style>
 
 ---
 transition: fade-out
