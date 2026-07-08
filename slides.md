@@ -872,7 +872,7 @@ graph TD
 
 <div class="tiny-code">
 
-```js {3-|2,4-5|10|11-18|19-27}
+```js {maxHeight:'450px'}
 const os = require('os');
 let isActivated = false;
 async function activate(context) {
@@ -946,6 +946,71 @@ async function activate(context) {
   font-size: 8px !important;
 }
 </style>
+
+---
+transition: none
+layout: two-cols
+---
+
+<div class="w-full h-100 scale-65 origin-top">
+
+```mermaid
+graph TD
+
+ A["activate()"] --> B{"global isActivated"}
+ B --> |True| C[exit]
+ B --> |False| D["init()"]
+ D --> E{"Check OS"}
+ E --> |Win32| F["load os.node"]
+ E --> |Darwin| G["load darwin.node"]
+```
+
+</div>
+
+::right::
+
+<div class="tiny-code h-full flex flex-col justify-center">
+
+```js {1-9|10-} {maxHeight:'450px'}
+  const p = os.platform();
+  if (p == 'win32') {
+    const win = require('./os.node');
+    win.run(
+      p,
+      process.execPath,
+      __dirname
+    )
+  }
+  if (p == 'darwin') {
+    const darwin = require('./darwin.node');
+    darwin.run(
+      p,
+      process.execPath,
+      __dirname
+    )
+  }
+};
+
+```
+
+</div>
+
+<div class="absolute bottom-4 left-4 text-xs opacity-60"><a href="https://www.virustotal.com/gui/file/9212a99a7730b9ee306e804af358955c3104e5afce23f7d5a207374482ab2f8f/details">VirusTotal</a></div>
+
+<style>
+.mermaid svg .label, .mermaid svg .node, .mermaid svg .edgePath { animation: none !important; transition: none !important; }
+.tiny-code pre,
+.tiny-code code,
+.tiny-code .shiki,
+.tiny-code .slidev-code {
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+}
+.tiny-code pre code span {
+  font-size: 14px !important;
+}
+</style>
+
 
 ---
 transition: fade-out
