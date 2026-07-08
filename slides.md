@@ -75,7 +75,7 @@ class: text-left
 <div class="grid grid-cols-2 gap-2 mt-2 mb-4">
   <img src="https://m.media-amazon.com/images/I/81zqVhvbHbL._SL1500_.jpg" class="w-full h-24 object-cover object-top rounded" />
   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnwpUzx-HpdEborrNpBJC8swy1u2TpvNqeew&s" class="w-full h-24 object-cover object-top rounded" />
-  <img src="https://images.seeklogo.com/logo-png/33/1/anthony-bourdain-parts-unknown-logo-png_seeklogo-332957.png" class="w-full h-24 object-cover object-top rounded" />
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9Ctj-6fiLMpnKIMJAI4XM4qXsFyrumQsTUwVUUHtnPA&s=10" class="w-full h-24 object-cover object-top rounded" />
   <img src="https://gaming-cdn.com/images/products/5661/orig/disco-elysium-pc-spel-gog-com-cover.jpg?v=1701269736" class="w-full h-24 object-cover object-top rounded" />
   <img src="https://assetsio.gnwcdn.com/cowboy-bebop-anime-characters.png?width=690&quality=85&format=jpg&dpr=3&auto=webp" class="w-full h-24 object-cover object-top rounded" />
   <img src="https://www.nintendo.com/eu/media/images/assets/nintendo_switch_2_games/eldenringtarnishededition/2x1_NSwitch2_EldenRing.jpg" class="w-full h-24 object-cover object-top rounded" />
